@@ -50,7 +50,13 @@
       <Link>ManipulableImage.cs</Link>
     </Compile>
     <Compile Include="BitmapInterop.cs" />
+    <Compile Include="ManipulableImageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\1.bmp" />
+    <EmbeddedResource Include="Images\2.bmp" />
+    <EmbeddedResource Include="Images\3.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
