@@ -34,7 +34,15 @@ namespace Imagister
 		/// <returns>The created Bitmap.</returns>
 		public static Bitmap Save(ManipulableImage img)
 		{
-			return null;
+			Bitmap bmp = new Bitmap(img.Width, img.Height,
+				PixelFormat.Format32bppPArgb);
+			BitmapData data = bmp.LockBits(
+				new Rectangle(0, 0, bmp.Width, bmp.Height),
+				ImageLockMode.WriteOnly,
+				PixelFormat.Format32bppPArgb);
+			Marshal.Copy(img.Pixels, 0, data.Scan0, img.Pixels.Length);
+			bmp.UnlockBits(data);
+			return bmp;
 		}
 	}
 }
