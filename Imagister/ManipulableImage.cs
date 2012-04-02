@@ -1,10 +1,39 @@
-﻿namespace Imagister
+﻿using System;
+
+namespace Imagister
 {
 	/// <summary>
 	/// Represents an image that can be manipulated.
 	/// </summary>
 	public class ManipulableImage
 	{
+		private int height, width;
+		private int[] pixels;
+
+		/// <summary>
+		/// Gets the height, in pixels, of this ManipulableImage.
+		/// </summary>
+		public int Height
+		{
+			get { return height; }
+		}
+
+		/// <summary>
+		/// Gets the width, in pixels, of this ManipulableImage.
+		/// </summary>
+		public int Width
+		{
+			get { return width; }
+		}
+
+		/// <summary>
+		/// Gets the pixel array of this ManipulableImage.
+		/// </summary>
+		public int[] Pixels
+		{
+			get { return pixels; }
+		}
+
 		/// <summary>
 		/// Constructs a ManipulableImage.
 		/// </summary>
@@ -14,6 +43,9 @@
 		/// the image's pixels in row-major order.</param>
 		public ManipulableImage(int height, int width, int[] pixels)
 		{
+			this.height = height;
+			this.width = width;
+			this.pixels = pixels;
 		}
 
 		/// <summary>
