@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace Imagister
 {
@@ -15,7 +17,14 @@ namespace Imagister
 		/// <returns>The created ManipulableImage.</returns>
 		public static ManipulableImage Load(Bitmap bmp)
 		{
-			return null;
+			int[] pixels = new int[bmp.Width * bmp.Height];
+			BitmapData data = bmp.LockBits(
+				new Rectangle(0, 0, bmp.Width, bmp.Height),
+				ImageLockMode.ReadOnly,
+				PixelFormat.Format32bppPArgb);
+			Marshal.Copy(data.Scan0, pixels, 0, pixels.Length);
+			bmp.UnlockBits(data);
+			return new ManipulableImage(bmp.Height, bmp.Width, pixels);
 		}
 
 		/// <summary>
