@@ -71,6 +71,24 @@ namespace Imagister
 		/// </summary>
 		public void FlipVertical()
 		{
+			int[] buffer = new int[width];
+			for (int row = 0; row < height / 2; row++)
+			{
+				int flippedRow = height - 1 - row;
+				int rowBytes = width * sizeof(int);
+				Buffer.BlockCopy(
+					pixels, row * rowBytes,
+					buffer,	0,
+					rowBytes);
+				Buffer.BlockCopy(
+					pixels, flippedRow * rowBytes,
+					pixels, row * rowBytes,
+					rowBytes);
+				Buffer.BlockCopy(
+					buffer, 0,
+					pixels, flippedRow * rowBytes,
+					rowBytes);
+			}
 		}
 
 		/// <summary>
@@ -78,6 +96,10 @@ namespace Imagister
 		/// </summary>
 		public void FlipHorizontal()
 		{
+			for (int row = 0; row < height; row++)
+			{
+				Array.Reverse(pixels, row * width, width);
+			}
 		}
 
 		/// <summary>
