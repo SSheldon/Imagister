@@ -78,7 +78,7 @@ namespace Imagister
 				int rowBytes = width * sizeof(int);
 				Buffer.BlockCopy(
 					pixels, row * rowBytes,
-					buffer,	0,
+					buffer, 0,
 					rowBytes);
 				Buffer.BlockCopy(
 					pixels, flippedRow * rowBytes,
