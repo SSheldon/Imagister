@@ -126,6 +126,22 @@ namespace Imagister
 		/// this ManipulableImage's pixels.</param>
 		public void RotateRight(int[] pixels)
 		{
+			int oldHeight = this.height;
+			int oldWidth = this.width;
+			int[] oldPixels = this.pixels;
+
+			this.height = oldWidth;
+			this.width = oldHeight;
+			this.pixels = pixels;
+
+			for (int row = 0; row < height; row++)
+			{
+				for (int col = 0; col < width; col++)
+				{
+					int i = (oldHeight - 1 - col) * oldWidth + row;
+					this[row, col] = oldPixels[i];
+				}
+			}
 		}
 
 		/// <summary>
@@ -143,6 +159,22 @@ namespace Imagister
 		/// this ManipulableImage's pixels.</param>
 		public void RotateLeft(int[] pixels)
 		{
+			int oldHeight = this.height;
+			int oldWidth = this.width;
+			int[] oldPixels = this.pixels;
+
+			this.height = oldWidth;
+			this.width = oldHeight;
+			this.pixels = pixels;
+
+			for (int row = 0; row < height; row++)
+			{
+				for (int col = 0; col < width; col++)
+				{
+					int i = col * oldWidth + (oldWidth - 1 - row);
+					this[row, col] = oldPixels[i];
+				}
+			}
 		}
 
 		/// <summary>
