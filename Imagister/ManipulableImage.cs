@@ -35,6 +35,24 @@ namespace Imagister
 		}
 
 		/// <summary>
+		/// Gets or sets the premultiplied ARGB pixel
+		/// at the specified row and column indices.
+		/// </summary>
+		/// <param name="row">The row index of the pixel.</param>
+		/// <param name="col">The column index of the pixel.</param>
+		public int this[int row, int col]
+		{
+			get
+			{
+				return pixels[row * width + col];
+			}
+			set
+			{
+				pixels[row * width + col] = value;
+			}
+		}
+
+		/// <summary>
 		/// Constructs a ManipulableImage.
 		/// </summary>
 		/// <param name="height">The height of the image.</param>
