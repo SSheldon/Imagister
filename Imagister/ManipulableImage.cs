@@ -107,6 +107,8 @@ namespace Imagister
 		/// </summary>
 		public void RotateDown()
 		{
+			FlipVertical();
+			FlipHorizontal();
 		}
 
 		/// <summary>
