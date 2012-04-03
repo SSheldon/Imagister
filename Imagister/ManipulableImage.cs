@@ -72,6 +72,14 @@ namespace Imagister
 		/// <summary>
 		/// Rotates this ManipulableImage 90° to the right.
 		/// </summary>
+		public void RotateRight()
+		{
+			RotateRight(new int[height * width]);
+		}
+
+		/// <summary>
+		/// Rotates this ManipulableImage 90° to the right.
+		/// </summary>
 		/// <param name="pixels">The new array that will be used to store
 		/// this ManipulableImage's pixels.</param>
 		public void RotateRight(int[] pixels)
@@ -81,10 +89,30 @@ namespace Imagister
 		/// <summary>
 		/// Rotates this ManipulableImage 90° to the left.
 		/// </summary>
+		public void RotateLeft()
+		{
+			RotateLeft(new int[height * width]);
+		}
+
+		/// <summary>
+		/// Rotates this ManipulableImage 90° to the left.
+		/// </summary>
 		/// <param name="pixels">The new array that will be used to store
 		/// this ManipulableImage's pixels.</param>
 		public void RotateLeft(int[] pixels)
 		{
+		}
+
+		/// <summary>
+		/// Resizes this ManipulableImage.
+		/// </summary>
+		/// <param name="height">The height to which to resize
+		/// this ManipulableImage.</param>
+		/// <param name="width">The width to which to resize
+		/// this ManipulableImage.</param>
+		public void Resize(int height, int width)
+		{
+			Resize(height, width, new int[height * width]);
 		}
 
 		/// <summary>
