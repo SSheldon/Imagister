@@ -49,6 +49,9 @@
     <Compile Include="..\Imagister\ManipulableImage.cs">
       <Link>ManipulableImage.cs</Link>
     </Compile>
+    <Compile Include="..\Imagister\Pixels.cs">
+      <Link>Pixels.cs</Link>
+    </Compile>
     <Compile Include="BitmapInterop.cs" />
     <Compile Include="ManipulableImageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

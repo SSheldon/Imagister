@@ -5,7 +5,7 @@ namespace Imagister
 	/// <summary>
 	/// Represents an image that can be manipulated.
 	/// </summary>
-	public class ManipulableImage
+	public class ManipulableImage : IPixels
 	{
 		private int height, width;
 		private int[] pixels;
