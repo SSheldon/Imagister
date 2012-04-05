@@ -44,11 +44,11 @@ namespace Imagister
 		{
 			get
 			{
-				return pixels[row * width + col];
+				return Pixels[row * Width + col];
 			}
 			set
 			{
-				pixels[row * width + col] = value;
+				Pixels[row * Width + col] = value;
 			}
 		}
 
@@ -71,22 +71,22 @@ namespace Imagister
 		/// </summary>
 		public void FlipVertical()
 		{
-			int[] buffer = new int[width];
-			for (int row = 0; row < height / 2; row++)
+			int[] buffer = new int[Width];
+			for (int row = 0; row < Height / 2; row++)
 			{
-				int flippedRow = height - 1 - row;
-				int rowBytes = width * sizeof(int);
+				int flippedRow = Height - 1 - row;
+				int rowBytes = Width * sizeof(int);
 				Buffer.BlockCopy(
-					pixels, row * rowBytes,
+					Pixels, row * rowBytes,
 					buffer, 0,
 					rowBytes);
 				Buffer.BlockCopy(
-					pixels, flippedRow * rowBytes,
-					pixels, row * rowBytes,
+					Pixels, flippedRow * rowBytes,
+					Pixels, row * rowBytes,
 					rowBytes);
 				Buffer.BlockCopy(
 					buffer, 0,
-					pixels, flippedRow * rowBytes,
+					Pixels, flippedRow * rowBytes,
 					rowBytes);
 			}
 		}
@@ -96,9 +96,9 @@ namespace Imagister
 		/// </summary>
 		public void FlipHorizontal()
 		{
-			for (int row = 0; row < height; row++)
+			for (int row = 0; row < Height; row++)
 			{
-				Array.Reverse(pixels, row * width, width);
+				Array.Reverse(Pixels, row * Width, Width);
 			}
 		}
 
@@ -116,7 +116,7 @@ namespace Imagister
 		/// </summary>
 		public void RotateRight()
 		{
-			RotateRight(new int[height * width]);
+			RotateRight(new int[Height * Width]);
 		}
 
 		/// <summary>
@@ -126,17 +126,17 @@ namespace Imagister
 		/// this ManipulableImage's pixels.</param>
 		public void RotateRight(int[] pixels)
 		{
-			int oldHeight = this.height;
-			int oldWidth = this.width;
-			int[] oldPixels = this.pixels;
+			int oldHeight = Height;
+			int oldWidth = Width;
+			int[] oldPixels = Pixels;
 
 			this.height = oldWidth;
 			this.width = oldHeight;
 			this.pixels = pixels;
 
-			for (int row = 0; row < height; row++)
+			for (int row = 0; row < Height; row++)
 			{
-				for (int col = 0; col < width; col++)
+				for (int col = 0; col < Width; col++)
 				{
 					int i = (oldHeight - 1 - col) * oldWidth + row;
 					this[row, col] = oldPixels[i];
@@ -149,7 +149,7 @@ namespace Imagister
 		/// </summary>
 		public void RotateLeft()
 		{
-			RotateLeft(new int[height * width]);
+			RotateLeft(new int[Height * Width]);
 		}
 
 		/// <summary>
@@ -159,17 +159,17 @@ namespace Imagister
 		/// this ManipulableImage's pixels.</param>
 		public void RotateLeft(int[] pixels)
 		{
-			int oldHeight = this.height;
-			int oldWidth = this.width;
-			int[] oldPixels = this.pixels;
+			int oldHeight = Height;
+			int oldWidth = Width;
+			int[] oldPixels = Pixels;
 
 			this.height = oldWidth;
 			this.width = oldHeight;
 			this.pixels = pixels;
 
-			for (int row = 0; row < height; row++)
+			for (int row = 0; row < Height; row++)
 			{
-				for (int col = 0; col < width; col++)
+				for (int col = 0; col < Width; col++)
 				{
 					int i = col * oldWidth + (oldWidth - 1 - row);
 					this[row, col] = oldPixels[i];
