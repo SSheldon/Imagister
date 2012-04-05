@@ -35,4 +35,78 @@ namespace Imagister
 			set;
 		}
 	}
+
+	/// <summary>
+	/// An IPixels with the pixels stored in an int array.
+	/// </summary>
+	public class PixelsArray : IPixels
+	{
+		private readonly int height, width;
+		private readonly int[] pixels;
+
+		/// <summary>
+		/// Gets the height of this PixelsArray.
+		/// </summary>
+		public int Height
+		{
+			get { return height; }
+		}
+
+		/// <summary>
+		/// Gets the width of this PixelsArray.
+		/// </summary>
+		public int Width
+		{
+			get { return width; }
+		}
+
+		/// <summary>
+		/// Gets or sets the premultiplied ARGB pixel at
+		/// the specified row and column indices in this PixelsArray.
+		/// </summary>
+		/// <param name="row">The row index of the pixel.</param>
+		/// <param name="col">The column index of the pixel.</param>
+		public int this[int row, int col]
+		{
+			get
+			{
+				return pixels[row * width + col];
+			}
+			set
+			{
+				pixels[row * width + col] = value;
+			}
+		}
+
+		/// <summary>
+		/// Gets the pixel array of this PixelsArray.
+		/// </summary>
+		public int[] Pixels
+		{
+			get { return pixels; }
+		}
+
+		/// <summary>
+		/// Constructs a PixelsArray.
+		/// </summary>
+		/// <param name="height">The height of the PixelsArray.</param>
+		/// <param name="width">The width of the PixelsArray.</param>
+		/// <param name="pixels">The array that will be used to store
+		/// the pixels of the PixelArray.</param>
+		public PixelsArray(int height, int width, int[] pixels)
+		{
+			this.height = height;
+			this.width = width;
+			this.pixels = pixels;
+		}
+
+		/// <summary>
+		/// Constructs a PixelsArray of cleared pixels.
+		/// </summary>
+		/// <param name="height">The height of the PixelsArray.</param>
+		/// <param name="width">The width of the PixelsArray.</param>
+		public PixelsArray(int height, int width)
+			: this(height, width, new int[height * width])
+		{ }
+	}
 }
