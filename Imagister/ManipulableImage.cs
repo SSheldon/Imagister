@@ -7,15 +7,14 @@ namespace Imagister
 	/// </summary>
 	public class ManipulableImage : IPixels
 	{
-		private int height, width;
-		private int[] pixels;
+		private PixelsArray pixels;
 
 		/// <summary>
 		/// Gets the height, in pixels, of this ManipulableImage.
 		/// </summary>
 		public int Height
 		{
-			get { return height; }
+			get { return pixels.Height; }
 		}
 
 		/// <summary>
@@ -23,7 +22,7 @@ namespace Imagister
 		/// </summary>
 		public int Width
 		{
-			get { return width; }
+			get { return pixels.Width; }
 		}
 
 		/// <summary>
@@ -31,7 +30,7 @@ namespace Imagister
 		/// </summary>
 		public int[] Pixels
 		{
-			get { return pixels; }
+			get { return pixels.Pixels; }
 		}
 
 		/// <summary>
@@ -44,11 +43,11 @@ namespace Imagister
 		{
 			get
 			{
-				return Pixels[row * Width + col];
+				return pixels[row, col];
 			}
 			set
 			{
-				Pixels[row * Width + col] = value;
+				pixels[row, col] = value;
 			}
 		}
 
@@ -61,9 +60,7 @@ namespace Imagister
 		/// the image's pixels in row-major order.</param>
 		public ManipulableImage(int height, int width, int[] pixels)
 		{
-			this.height = height;
-			this.width = width;
-			this.pixels = pixels;
+			this.pixels = new PixelsArray(height, width, pixels);
 		}
 
 		/// <summary>
@@ -126,20 +123,14 @@ namespace Imagister
 		/// this ManipulableImage's pixels.</param>
 		public void RotateRight(int[] pixels)
 		{
-			int oldHeight = Height;
-			int oldWidth = Width;
-			int[] oldPixels = Pixels;
-
-			this.height = oldWidth;
-			this.width = oldHeight;
-			this.pixels = pixels;
+			PixelsArray old = this.pixels;
+			this.pixels = new PixelsArray(old.Width, old.Height, pixels);
 
 			for (int row = 0; row < Height; row++)
 			{
 				for (int col = 0; col < Width; col++)
 				{
-					int i = (oldHeight - 1 - col) * oldWidth + row;
-					this[row, col] = oldPixels[i];
+					this[row, col] = old[old.Height - 1 - col, row];
 				}
 			}
 		}
@@ -159,20 +150,14 @@ namespace Imagister
 		/// this ManipulableImage's pixels.</param>
 		public void RotateLeft(int[] pixels)
 		{
-			int oldHeight = Height;
-			int oldWidth = Width;
-			int[] oldPixels = Pixels;
-
-			this.height = oldWidth;
-			this.width = oldHeight;
-			this.pixels = pixels;
+			PixelsArray old = this.pixels;
+			this.pixels = new PixelsArray(old.Width, old.Height, pixels);
 
 			for (int row = 0; row < Height; row++)
 			{
 				for (int col = 0; col < Width; col++)
 				{
-					int i = col * oldWidth + (oldWidth - 1 - row);
-					this[row, col] = oldPixels[i];
+					this[row, col] = old[col, old.Width - 1 - row];
 				}
 			}
 		}
