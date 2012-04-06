@@ -13,14 +13,24 @@ namespace Imagister.Tests
 	{
 		private ManipulableImage img;
 
-		private Stream LoadImageStream(string filename)
+		/// <summary>
+		/// Gets the stream for an embedded test image.
+		/// </summary>
+		/// <param name="filename">The filename of the image.</param>
+		/// <returns>The stream for the image.</returns>
+		private static Stream LoadImageStream(string filename)
 		{
 			string name = "Imagister.Tests.Images." + filename;
 			Assembly asm = Assembly.GetExecutingAssembly();
 			return asm.GetManifestResourceStream(name);
 		}
 
-		private ManipulableImage LoadManipulableImage(string filename)
+		/// <summary>
+		/// Creates a ManipulableImage from an embedded test image.
+		/// </summary>
+		/// <param name="filename">The filename of the image.</param>
+		/// <returns>The created ManipulableImage</returns>
+		private static ManipulableImage LoadManipulableImage(string filename)
 		{
 			Bitmap bmp = new Bitmap(LoadImageStream(filename));
 			return BitmapInterop.Load(bmp);
