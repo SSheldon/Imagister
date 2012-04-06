@@ -39,14 +39,14 @@ namespace Imagister.Tests
 		[TestInitialize]
 		public void TestInitialize()
 		{
-			img = LoadManipulableImage("1.bmp");
+			img = LoadManipulableImage("3.bmp");
 		}
 
 		[TestMethod]
 		public void TestEquals()
 		{
 			Assert.IsNotNull(img);
-			ManipulableImage expected = LoadManipulableImage("1.bmp");
+			ManipulableImage expected = LoadManipulableImage("3.bmp");
 			Assert.IsTrue(SameData(img, expected));
 		}
 	}
