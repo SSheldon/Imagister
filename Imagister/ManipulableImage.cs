@@ -185,6 +185,18 @@ namespace Imagister
 		/// this ManipulableImage's pixels.</param>
 		public void Resize(int height, int width, int[] pixels)
 		{
+			PixelsArray old = this.pixels;
+			this.pixels = new PixelsArray(height, width, pixels);
+
+			for (int row = 0; row < Height; row++)
+			{
+				for (int col = 0; col < Width; col++)
+				{
+					this[row, col] = old[
+						(int)((double)row / Height * old.Height),
+						(int)((double)col / Width * old.Width)];
+				}
+			}
 		}
 	}
 }
