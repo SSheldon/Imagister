@@ -104,5 +104,12 @@ namespace Imagister.Tests
 		{
 			DoAndCompare(() => img.RotateLeft(), "3_rot-l.bmp");
 		}
+
+		[TestMethod]
+		[ExpectedException(typeof(System.ArgumentException))]
+		public void TestRotateRightInvalidPixels()
+		{
+			img.RotateRight(new int[3]);
+		}
 	}
 }
