@@ -60,6 +60,11 @@
     <EmbeddedResource Include="Images\1.bmp" />
     <EmbeddedResource Include="Images\2.bmp" />
     <EmbeddedResource Include="Images\3.bmp" />
+    <EmbeddedResource Include="Images\3_flip-h.bmp" />
+    <EmbeddedResource Include="Images\3_flip-v.bmp" />
+    <EmbeddedResource Include="Images\3_rot-d.bmp" />
+    <EmbeddedResource Include="Images\3_rot-l.bmp" />
+    <EmbeddedResource Include="Images\3_rot-r.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
