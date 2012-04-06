@@ -70,10 +70,14 @@ namespace Imagister
 		{
 			get
 			{
+				if (row < 0 || row >= height || col < 0 || col >= width)
+					throw new IndexOutOfRangeException();
 				return pixels[row * width + col];
 			}
 			set
 			{
+				if (row < 0 || row >= height || col < 0 || col >= width)
+					throw new IndexOutOfRangeException();
 				pixels[row * width + col] = value;
 			}
 		}
@@ -95,6 +99,8 @@ namespace Imagister
 		/// the pixels of the PixelArray.</param>
 		public PixelsArray(int height, int width, int[] pixels)
 		{
+			if (pixels.Length != height * width)
+				throw new ArgumentException();
 			this.height = height;
 			this.width = width;
 			this.pixels = pixels;
