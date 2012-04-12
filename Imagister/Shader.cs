@@ -50,5 +50,22 @@ namespace Imagister
 
 			return (a << 24) | (r << 16) | (g << 8) | b;
 		}
+
+		/// <summary>
+		/// Inverts an ARGB pixel.
+		/// </summary>
+		/// <param name="pixel">The ARGB pixel to invert.</param>
+		/// <returns>The inverted ARGB pixel.</returns>
+		public static int Grayscale(int pixel)
+		{
+			int a = (pixel >> 24) & 0xFF;
+			int r = (pixel >> 16) & 0xFF;
+			int g = (pixel >> 8) & 0xFF;
+			int b = (pixel) & 0xFF;
+
+			int gray = (r + b + g) / 3;
+
+			return (a << 24) | (gray << 16) | (gray << 8) | gray;
+		}
 	}
 }
