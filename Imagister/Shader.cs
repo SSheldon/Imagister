@@ -67,5 +67,24 @@ namespace Imagister
 
 			return (a << 24) | (gray << 16) | (gray << 8) | gray;
 		}
+
+		/// <summary>
+		/// Converts an ARGB pixel to sepia.
+		/// </summary>
+		/// <param name="pixel">The ARGB pixel to convert.</param>
+		/// <returns>The converted ARGB pixel.</returns>
+		public static int Sepia(int pixel)
+		{
+			int a = (pixel >> 24) & 0xFF;
+			int r = (pixel >> 16) & 0xFF;
+			int g = (pixel >> 8) & 0xFF;
+			int b = (pixel) & 0xFF;
+
+			int outR = Math.Min((int)(.393 * r + .769 * g + .189 * b), 255);
+			int outG = Math.Min((int)(.349 * r + .686 * g + .168 * b), 255);
+			int outB = Math.Min((int)(.272 * r + .534 * g + .131 * b), 255);
+
+			return (a << 24) | (outR << 16) | (outG << 8) | outB;
+		}
 	}
 }
