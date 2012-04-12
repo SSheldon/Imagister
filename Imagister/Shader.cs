@@ -52,10 +52,10 @@ namespace Imagister
 		}
 
 		/// <summary>
-		/// Inverts an ARGB pixel.
+		/// Converts an ARGB pixel to grayscale.
 		/// </summary>
-		/// <param name="pixel">The ARGB pixel to invert.</param>
-		/// <returns>The inverted ARGB pixel.</returns>
+		/// <param name="pixel">The ARGB pixel to convert.</param>
+		/// <returns>The converted ARGB pixel.</returns>
 		public static int Grayscale(int pixel)
 		{
 			int a = (pixel >> 24) & 0xFF;
