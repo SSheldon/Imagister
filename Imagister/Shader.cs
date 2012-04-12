@@ -5,11 +5,11 @@ namespace Imagister
 	/// <summary>
 	/// A Shader is a method that shades a pixel.
 	/// </summary>
+	/// <param name="pixel">The premultiplied ARGB color of the pixel.</param>
 	/// <param name="row">The row index of the pixel.</param>
 	/// <param name="col">The column index of the pixel.</param>
-	/// <param name="pixel">The premultiplied ARGB color of the pixel.</param>
 	/// <returns>The premultiplied ARGB color after shading.</returns>
-	public delegate int Shader(int row, int col, int pixel);
+	public delegate int Shader(int pixel, int row, int col);
 
 	/// <summary>
 	/// Provides Shaders and methods for working with them.
@@ -27,7 +27,7 @@ namespace Imagister
 			{
 				for (int col = 0; col < pixels.Width; col++)
 				{
-					pixels[row, col] = shader(row, col, pixels[row, col]);
+					pixels[row, col] = shader(pixels[row, col], row, col);
 				}
 			}
 		}
