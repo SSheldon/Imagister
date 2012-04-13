@@ -225,5 +225,32 @@ namespace Imagister
 				}
 			}
 		}
+
+		/// <summary>
+		/// Applies a Shader to this ManipulableImage.
+		/// </summary>
+		/// <param name="shader">The Shader to apply.</param>
+		public void Apply(Shader shader)
+		{
+			int[] p = Pixels;
+			for (int i = 0; i < p.Length; i++)
+			{
+				p[i] = shader(p[i]);
+			}
+		}
+
+		/// <summary>
+		/// Applies a Shader to this ManipulableImage.
+		/// </summary>
+		/// <param name="shader">The CoordShader to apply.</param>
+		public void Apply(CoordShader shader)
+		{
+			int width = Width;
+			int[] p = Pixels;
+			for (int i = 0; i < p.Length; i++)
+			{
+				p[i] = shader(p[i], i / width, i % width);
+			}
+		}
 	}
 }
