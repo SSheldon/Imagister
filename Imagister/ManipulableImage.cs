@@ -163,6 +163,25 @@ namespace Imagister
 		}
 
 		/// <summary>
+		/// Crops this ManipulableImage to the specified Rectangle.
+		/// </summary>
+		/// <param name="rect">The Rectangle to crop to.</param>
+		public void Crop(Rectangle rect)
+		{
+			Crop(rect, new int[rect.Height * rect.Width]);
+		}
+
+		/// <summary>
+		/// Crops this ManipulableImage to the specified Rectangle.
+		/// </summary>
+		/// <param name="rect">The Rectangle to crop to.</param>
+		/// <param name="pixels">The new array that will be used to store
+		/// this ManipulableImage's pixels.</param>
+		public void Crop(Rectangle rect, int[] pixels)
+		{
+		}
+
+		/// <summary>
 		/// Resizes this ManipulableImage.
 		/// </summary>
 		/// <param name="height">The height to which to resize
