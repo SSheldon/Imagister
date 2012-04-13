@@ -110,6 +110,20 @@ namespace Imagister
 			Z -= v.Z;
 		}
 
+		public void Add(float c)
+		{
+			X += c;
+			Y += c;
+			Z += c;
+		}
+
+		public void Subtract(float c)
+		{
+			X -= c;
+			Y -= c;
+			Z -= c;
+		}
+
 		public void Multiply(float c)
 		{
 			X *= c;
