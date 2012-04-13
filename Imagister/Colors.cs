@@ -88,5 +88,36 @@ namespace Imagister
 			rgb = rgb & 0xFFFFFF;
 			return (int argb) => argb & (0xFF << 24) | rgb;
 		}
+
+		/// <summary>
+		/// Corrects a pixel with the specified gamma value.
+		/// </summary>
+		/// <param name="argb">The ARGB pixel to correct.</param>
+		/// <param name="gamma">The gamma value of the pixel.</param>
+		/// <returns>The corrected ARGB pixel.</returns>
+		public static int CorrectGamma(int argb, float gamma)
+		{
+			int a = (argb >> 24) & 0xFF;
+			int r = (argb >> 16) & 0xFF;
+			int g = (argb >> 8) & 0xFF;
+			int b = (argb) & 0xFF;
+
+			float correction = 1 / gamma;
+			r = (int)(255 * Math.Pow(r / 255.0, correction));
+			g = (int)(255 * Math.Pow(g / 255.0, correction));
+			b = (int)(255 * Math.Pow(b / 255.0, correction));
+
+			return (a << 24) | (r << 16) | (g << 8) | b;
+		}
+
+		/// <summary>
+		/// Gets a Shader that corrects pixels for the specified gamma value.
+		/// </summary>
+		/// <param name="gamma">The gamma value of the pixels.</param>
+		/// <returns>A gamma correcting shader.</returns>
+		public static Shader GetGammaShader(float gamma)
+		{
+			return (int argb) => CorrectGamma(argb, gamma);
+		}
 	}
 }
