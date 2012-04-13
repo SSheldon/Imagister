@@ -115,4 +115,58 @@ namespace Imagister
 			: this(height, width, new int[height * width])
 		{ }
 	}
+
+	/// <summary>
+	/// Represents the size and location of a rectangle.
+	/// </summary>
+	public struct Rectangle
+	{
+		/// <summary>
+		/// The row index of the top-left corner of this Rectangle.
+		/// </summary>
+		public int Row;
+		/// <summary>
+		/// The column index of the top-left corner of this Rectangle.
+		/// </summary>
+		public int Col;
+		/// <summary>
+		/// The width of this Rectangle.
+		/// </summary>
+		public int Width;
+		/// <summary>
+		/// The height of this Rectangle.
+		/// </summary>
+		public int Height;
+
+		/// <summary>
+		/// Constructs a Rectangle.
+		/// </summary>
+		/// <param name="row">
+		/// The row index of the top-left corner of the Rectangle.
+		/// </param>
+		/// <param name="col">
+		/// The column index of the top-left corner of the Rectangle.
+		/// </param>
+		/// <param name="width">The width of the Rectangle.</param>
+		/// <param name="height">The height of the Rectangle.</param>
+		public Rectangle(int row, int col, int width, int height)
+		{
+			Row = row;
+			Col = col;
+			Width = width;
+			Height = height;
+		}
+
+		/// <summary>
+		/// Indicates whether this Rectangle contains a coordinate.
+		/// </summary>
+		/// <param name="row">The row index of the coordinate.</param>
+		/// <param name="col">The column index of the coordinate.</param>
+		/// <returns>true if this Rectangle contains the coordinate.</returns>
+		public bool Contains(int row, int col)
+		{
+			return row >= Row && row <= Row + Height &&
+				col >= Col && col <= Col + Width;
+		}
+	}
 }
