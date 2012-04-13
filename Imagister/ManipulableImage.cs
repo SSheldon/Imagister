@@ -227,6 +227,31 @@ namespace Imagister
 		}
 
 		/// <summary>
+		/// Resizes this ManipulableImage using bilinear filtering.
+		/// </summary>
+		/// <param name="height">The height to which to resize
+		/// this ManipulableImage.</param>
+		/// <param name="width">The width to which to resize
+		/// this ManipulableImage.</param>
+		public void BilinearResize(int height, int width)
+		{
+			BilinearResize(height, width, new int[height * width]);
+		}
+
+		/// <summary>
+		/// Resizes this ManipulableImage using bilinear filtering.
+		/// </summary>
+		/// <param name="height">The height to which to resize
+		/// this ManipulableImage.</param>
+		/// <param name="width">The width to which to resize
+		/// this ManipulableImage.</param>
+		/// <param name="pixels">The new array that will be used to store
+		/// this ManipulableImage's pixels.</param>
+		public void BilinearResize(int height, int width, int[] pixels)
+		{
+		}
+
+		/// <summary>
 		/// Applies a Shader to this ManipulableImage.
 		/// </summary>
 		/// <param name="shader">The Shader to apply.</param>
