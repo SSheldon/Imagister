@@ -70,14 +70,18 @@ namespace Imagister
 		{
 			get
 			{
+#if DEBUG
 				if (row < 0 || row >= height || col < 0 || col >= width)
 					throw new IndexOutOfRangeException();
+#endif
 				return pixels[row * width + col];
 			}
 			set
 			{
+#if DEBUG
 				if (row < 0 || row >= height || col < 0 || col >= width)
 					throw new IndexOutOfRangeException();
+#endif
 				pixels[row * width + col] = value;
 			}
 		}
@@ -97,6 +101,8 @@ namespace Imagister
 		/// <param name="width">The width of the PixelsArray.</param>
 		/// <param name="pixels">The array that will be used to store
 		/// the pixels of the PixelArray.</param>
+		/// <exception cref="ArgumentException">
+		/// If the pixels array's size is not height * width.</exception>
 		public PixelsArray(int height, int width, int[] pixels)
 		{
 			if (pixels.Length != height * width)
