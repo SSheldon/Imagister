@@ -21,7 +21,14 @@ namespace Imagister
 		private byte g;
 		[FieldOffset(2)]
 		private byte r;
+		[FieldOffset(3)]
+		private byte a;
 
+		/// <summary>The alpha component of this Pixel.</summary>
+		public int A
+		{
+			get { return a; }
+		}
 		/// <summary>The red component of this Pixel.</summary>
 		public int R
 		{
@@ -47,7 +54,7 @@ namespace Imagister
 		/// <param name="argb">The argb value for the Pixel.</param>
 		public Pixel(int argb)
 		{
-			r = b = g = 0;
+			a = r = b = g = 0;
 			ARGB = argb;
 		}
 
