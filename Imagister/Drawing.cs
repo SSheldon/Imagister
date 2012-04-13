@@ -50,7 +50,7 @@ namespace Imagister
 		public static void FillRect(IPixels pixels, PixRect rect, int rgb)
 		{
 			Selection selection = new Selection(pixels, rect);
-			Shaders.Apply(pixels, Colors.GetSolidShader(rgb));
+			Shaders.Apply(selection, Shaders.SolidColor(rgb));
 		}
 	}
 }
