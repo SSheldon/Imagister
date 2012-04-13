@@ -4,6 +4,18 @@ namespace Imagister
 {
 	public class Posterizer
 	{
+		private int depth;
+
+		public Posterizer(int depth)
+		{
+			this.depth = depth;
+		}
+
+		public int Posterize(int argb)
+		{
+			return Posterize(argb, depth);
+		}
+
 		public static Vector3 Posterize(Vector3 res, int depth)
 		{
 			res.Multiply(depth / 256.0f);
