@@ -179,6 +179,14 @@ namespace Imagister
 		/// this ManipulableImage's pixels.</param>
 		public void Crop(Rectangle rect, int[] pixels)
 		{
+			for (int row = rect.Row; row < rect.Row + rect.Height; row++)
+			{
+				Buffer.BlockCopy(
+					Pixels, sizeof(int) * (row * Width + rect.Col),
+					pixels, sizeof(int) * (row - rect.Row) * rect.Width,
+					sizeof(int) * rect.Width);
+			}
+			this.pixels = new PixelsArray(rect.Height, rect.Width, pixels);
 		}
 
 		/// <summary>
