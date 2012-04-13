@@ -169,4 +169,53 @@ namespace Imagister
 				col >= Col && col <= Col + Width;
 		}
 	}
+
+	/// <summary>
+	/// An IPixels that is a selection from another IPixels.
+	/// </summary>
+	public class Selection : IPixels
+	{
+		private IPixels pixels;
+		private PixRect rect;
+
+		/// <summary>
+		/// Gets the height of this Selection.
+		/// </summary>
+		public int Height
+		{
+			get { return rect.Height; }
+		}
+
+		/// <summary>
+		/// Gets the width of this Selection.
+		/// </summary>
+		public int Width
+		{
+			get { return rect.Width; }
+		}
+
+		/// <summary>
+		/// Gets or sets the premultiplied ARGB pixel
+		/// at the specified row and column indices in this Selection.
+		/// </summary>
+		/// <param name="row">The row index of the pixel.</param>
+		/// <param name="col">The column index of the pixel.</param>
+		public int this[int row, int col]
+		{
+			get { return pixels[row + rect.Row, col + rect.Col]; }
+			set { pixels[row + rect.Row, col + rect.Col] = value; }
+		}
+
+		/// <summary>
+		/// Constructs a new Selection.
+		/// </summary>
+		/// <param name="pixels">The IPixels from which
+		/// pixels should be selected.</param>
+		/// <param name="rect">The Rectangle of pixels to use.</param>
+		public Selection(IPixels pixels, PixRect rect)
+		{
+			this.pixels = pixels;
+			this.rect = rect;
+		}
+	}
 }
