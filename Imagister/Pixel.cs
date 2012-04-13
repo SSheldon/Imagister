@@ -130,5 +130,12 @@ namespace Imagister
 			Y = (float)Math.Round(Y);
 			Z = (float)Math.Round(Z);
 		}
+
+		public void Clamp(float low, float high)
+		{
+			X = Math.Max(low, Math.Min(X, high));
+			Y = Math.Max(low, Math.Min(Y, high));
+			Z = Math.Max(low, Math.Min(Z, high));
+		}
 	}
 }

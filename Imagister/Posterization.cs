@@ -19,9 +19,11 @@ namespace Imagister
 		public static Vector3 Posterize(Vector3 res, int depth)
 		{
 			res.Multiply(depth / 256.0f);
-			res.Floor();
+			res.Round();
+			res.Clamp(0, depth - 1);
 			res.Multiply(256.0f / depth);
-			res.Floor();
+			res.Round();
+			res.Clamp(0, 255);
 			return res;
 		}
 
