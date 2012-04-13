@@ -117,6 +117,13 @@ namespace Imagister
 			Z *= c;
 		}
 
+		public void Floor()
+		{
+			X = (float)Math.Floor(X);
+			Y = (float)Math.Floor(Y);
+			Z = (float)Math.Floor(Z);
+		}
+
 		public void Round()
 		{
 			X = (float)Math.Round(X);
