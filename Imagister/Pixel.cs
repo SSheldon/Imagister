@@ -80,4 +80,48 @@ namespace Imagister
 			B -= other.B;
 		}
 	}
+
+	public struct Vector3
+	{
+		public float X, Y, Z;
+
+		public Vector3(float x, float y, float z)
+		{
+			X = x;
+			Y = y;
+			Z = z;
+		}
+
+		public Vector3(Pixel pixel)
+			: this(pixel.R, pixel.G, pixel.B)
+		{ }
+
+		public void Add(Vector3 v)
+		{
+			X += v.X;
+			Y += v.Y;
+			Z += v.Z;
+		}
+
+		public void Subtract(Vector3 v)
+		{
+			X -= v.X;
+			Y -= v.Y;
+			Z -= v.Z;
+		}
+
+		public void Multiply(float c)
+		{
+			X *= c;
+			Y *= c;
+			Z *= c;
+		}
+
+		public void Round()
+		{
+			X = (float)Math.Round(X);
+			Y = (float)Math.Round(Y);
+			Z = (float)Math.Round(Z);
+		}
+	}
 }
