@@ -119,7 +119,7 @@ namespace Imagister
 	/// <summary>
 	/// Represents the size and location of a rectangle.
 	/// </summary>
-	public struct Rectangle
+	public struct PixRect
 	{
 		/// <summary>
 		/// The row index of the top-left corner of this Rectangle.
@@ -149,7 +149,7 @@ namespace Imagister
 		/// </param>
 		/// <param name="width">The width of the Rectangle.</param>
 		/// <param name="height">The height of the Rectangle.</param>
-		public Rectangle(int row, int col, int width, int height)
+		public PixRect(int row, int col, int width, int height)
 		{
 			Row = row;
 			Col = col;
