@@ -249,23 +249,45 @@ namespace Imagister
 		/// this ManipulableImage's pixels.</param>
 		public void BilinearResize(int height, int width, int[] pixels)
 		{
+			PixelsArray res = new PixelsArray(height, width, pixels);
+			BilinearResizer br = new BilinearResizer(this.pixels, res);
+			br.Resize();
+			this.pixels = res;
+		}
+
+		private class BilinearResizer
+		{
 			//Adapted from http://tech-algorithm.com/articles/bilinear-image-scaling/
-			float x_ratio = ((float)(Width - 1)) / width;
-			float y_ratio = ((float)(Height - 1)) / height;
-			int offset = 0;
-			for (int i = 0; i < height; i++)
+			private PixelsArray old, res;
+			private float x_ratio, y_ratio;
+
+			public BilinearResizer(PixelsArray old, PixelsArray res)
 			{
-				for (int j = 0; j < width; j++)
-				{
+				this.old = old;
+				this.res = res;
+				x_ratio = ((float)(old.Width - 1)) / res.Width;
+				y_ratio = ((float)(old.Height - 1)) / res.Height;
+			}
+
+			public void Resize()
+			{
+				int[] pixels = res.Pixels;
+				int width = res.Width, height = res.Height;
+				for (int i = 0; i < pixels.Length; i++)
+					pixels[i] = GetPixel(i / width, i % width);
+			}
+
+			public int GetPixel(int i, int j)
+			{
 					int x = (int)(x_ratio * j);
 					int y = (int)(y_ratio * i);
 					float x_diff = (x_ratio * j) - x;
 					float y_diff = (y_ratio * i) - y;
-					int index = (y * Width + x);
-					int a = Pixels[index];
-					int b = Pixels[index + 1];
-					int c = Pixels[index + Width];
-					int d = Pixels[index + Width + 1];
+					int index = (y * old.Width + x);
+					int a = old.Pixels[index];
+					int b = old.Pixels[index + 1];
+					int c = old.Pixels[index + old.Width];
+					int d = old.Pixels[index + old.Width + 1];
 
 					// blue element
 					// Yb = Ab(1-w)(1-h) + Bb(w)(1-h) + Cb(h)(1-w) + Db(wh)
@@ -282,14 +304,12 @@ namespace Imagister
 					float red = ((a >> 16) & 0xff) * (1 - x_diff) * (1 - y_diff) + ((b >> 16) & 0xff) * (x_diff) * (1 - y_diff) +
 						((c >> 16) & 0xff) * (y_diff) * (1 - x_diff) + ((d >> 16) & 0xff) * (x_diff * y_diff);
 
-					pixels[offset++] =
+					return
 						(0xFF << 24) | // hardcode alpha
 						((0xFF & (int)red) << 16) |
 						((0xFF & (int)green) << 8) |
 						((int)blue);
-				}
 			}
-			this.pixels = new PixelsArray(height, width, pixels);
 		}
 
 		/// <summary>
