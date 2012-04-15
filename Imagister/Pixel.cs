@@ -92,10 +92,6 @@ namespace Imagister
 			Z = z;
 		}
 
-		public Vector3(Pixel pixel)
-			: this(pixel.R, pixel.G, pixel.B)
-		{ }
-
 		public void Add(Vector3 v)
 		{
 			X += v.X;
@@ -150,6 +146,22 @@ namespace Imagister
 			X = Math.Max(low, Math.Min(X, high));
 			Y = Math.Max(low, Math.Min(Y, high));
 			Z = Math.Max(low, Math.Min(Z, high));
+		}
+
+		public int ToARGB(int a = 0xFF)
+		{
+			int r = (int)Math.Max(0, Math.Min(X, 255));
+			int g = (int)Math.Max(0, Math.Min(Y, 255));
+			int b = (int)Math.Max(0, Math.Min(Z, 255));
+			return (a << 24) | (r << 16) | (g << 8) | b;
+		}
+
+		public static Vector3 FromARGB(int argb)
+		{
+			return new Vector3(
+				(argb >> 16) & 0xFF,
+				(argb >> 8) & 0xFF,
+				argb & 0xFF);
 		}
 	}
 }
