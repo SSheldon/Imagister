@@ -279,36 +279,36 @@ namespace Imagister
 
 			public int GetPixel(int i, int j)
 			{
-					int x = (int)(x_ratio * j);
-					int y = (int)(y_ratio * i);
-					float x_diff = (x_ratio * j) - x;
-					float y_diff = (y_ratio * i) - y;
-					int index = (y * old.Width + x);
-					int a = old.Pixels[index];
-					int b = old.Pixels[index + 1];
-					int c = old.Pixels[index + old.Width];
-					int d = old.Pixels[index + old.Width + 1];
+				int x = (int)(x_ratio * j);
+				int y = (int)(y_ratio * i);
+				float x_diff = (x_ratio * j) - x;
+				float y_diff = (y_ratio * i) - y;
+				int index = (y * old.Width + x);
+				int a = old.Pixels[index];
+				int b = old.Pixels[index + 1];
+				int c = old.Pixels[index + old.Width];
+				int d = old.Pixels[index + old.Width + 1];
 
-					// blue element
-					// Yb = Ab(1-w)(1-h) + Bb(w)(1-h) + Cb(h)(1-w) + Db(wh)
-					float blue = (a & 0xff) * (1 - x_diff) * (1 - y_diff) + (b & 0xff) * (x_diff) * (1 - y_diff) +
-						(c & 0xff) * (y_diff) * (1 - x_diff) + (d & 0xff) * (x_diff * y_diff);
+				// blue element
+				// Yb = Ab(1-w)(1-h) + Bb(w)(1-h) + Cb(h)(1-w) + Db(wh)
+				float blue = (a & 0xff) * (1 - x_diff) * (1 - y_diff) + (b & 0xff) * (x_diff) * (1 - y_diff) +
+					(c & 0xff) * (y_diff) * (1 - x_diff) + (d & 0xff) * (x_diff * y_diff);
 
-					// green element
-					// Yg = Ag(1-w)(1-h) + Bg(w)(1-h) + Cg(h)(1-w) + Dg(wh)
-					float green = ((a >> 8) & 0xff) * (1 - x_diff) * (1 - y_diff) + ((b >> 8) & 0xff) * (x_diff) * (1 - y_diff) +
-						((c >> 8) & 0xff) * (y_diff) * (1 - x_diff) + ((d >> 8) & 0xff) * (x_diff * y_diff);
+				// green element
+				// Yg = Ag(1-w)(1-h) + Bg(w)(1-h) + Cg(h)(1-w) + Dg(wh)
+				float green = ((a >> 8) & 0xff) * (1 - x_diff) * (1 - y_diff) + ((b >> 8) & 0xff) * (x_diff) * (1 - y_diff) +
+					((c >> 8) & 0xff) * (y_diff) * (1 - x_diff) + ((d >> 8) & 0xff) * (x_diff * y_diff);
 
-					// red element
-					// Yr = Ar(1-w)(1-h) + Br(w)(1-h) + Cr(h)(1-w) + Dr(wh)
-					float red = ((a >> 16) & 0xff) * (1 - x_diff) * (1 - y_diff) + ((b >> 16) & 0xff) * (x_diff) * (1 - y_diff) +
-						((c >> 16) & 0xff) * (y_diff) * (1 - x_diff) + ((d >> 16) & 0xff) * (x_diff * y_diff);
+				// red element
+				// Yr = Ar(1-w)(1-h) + Br(w)(1-h) + Cr(h)(1-w) + Dr(wh)
+				float red = ((a >> 16) & 0xff) * (1 - x_diff) * (1 - y_diff) + ((b >> 16) & 0xff) * (x_diff) * (1 - y_diff) +
+					((c >> 16) & 0xff) * (y_diff) * (1 - x_diff) + ((d >> 16) & 0xff) * (x_diff * y_diff);
 
-					return
-						(0xFF << 24) | // hardcode alpha
-						((0xFF & (int)red) << 16) |
-						((0xFF & (int)green) << 8) |
-						((int)blue);
+				return
+					(0xFF << 24) | // hardcode alpha
+					((0xFF & (int)red) << 16) |
+					((0xFF & (int)green) << 8) |
+					((int)blue);
 			}
 		}
 
