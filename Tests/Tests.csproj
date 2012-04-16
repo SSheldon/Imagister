@@ -46,12 +46,6 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Imagister\ManipulableImage.cs">
-      <Link>ManipulableImage.cs</Link>
-    </Compile>
-    <Compile Include="..\Imagister\Pixels.cs">
-      <Link>Pixels.cs</Link>
-    </Compile>
     <Compile Include="BitmapInterop.cs" />
     <Compile Include="ManipulableImageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +59,12 @@
     <EmbeddedResource Include="Images\3_rot-d.bmp" />
     <EmbeddedResource Include="Images\3_rot-l.bmp" />
     <EmbeddedResource Include="Images\3_rot-r.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Imagister\Editing\Editing.csproj">
+      <Project>{D86DDB31-9C4C-4309-B568-835698F485BD}</Project>
+      <Name>Editing</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
