@@ -61,6 +61,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Editing\Drawing.cs" />
+    <Compile Include="Editing\ManipulableImage.cs" />
+    <Compile Include="Editing\Pixel.cs" />
+    <Compile Include="Editing\Pixels.cs" />
+    <Compile Include="Editing\Posterization.cs" />
+    <Compile Include="Editing\Shader.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
