@@ -2,6 +2,7 @@
     x:Class="Imagister.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:p="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,6 +15,12 @@
     shell:SystemTray.IsVisible="True">
 
     <DockPanel>
+        <p:Pivot DockPanel.Dock="Bottom" Title="MANIPILATIONS">
+            <p:PivotItem Header="transforms">
+            </p:PivotItem>
+            <p:PivotItem Header="filters">
+            </p:PivotItem>
+        </p:Pivot>
         <Image Source="/Imagister;component/test.jpg" />
     </DockPanel>
 
