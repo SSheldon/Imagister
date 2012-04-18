@@ -15,10 +15,10 @@
     shell:SystemTray.IsVisible="True">
 
     <DockPanel>
-        <p:Pivot DockPanel.Dock="Bottom" Title="MANIPILATIONS">
-            <p:PivotItem Header="transforms">
+        <p:Pivot DockPanel.Dock="Bottom" Title="" Margin="0,-26,0,0">
+            <p:PivotItem Header="transform" Margin="0">
             </p:PivotItem>
-            <p:PivotItem Header="filters">
+            <p:PivotItem Header="filters" Margin="0">
             </p:PivotItem>
         </p:Pivot>
         <Image Source="/Imagister;component/test.jpg" />
