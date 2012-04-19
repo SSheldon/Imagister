@@ -51,7 +51,7 @@
             <p:PivotItem Header="filters" Margin="0">
             </p:PivotItem>
         </p:Pivot>
-        <Image Source="/Imagister;component/test.jpg" />
+        <Image x:Name="imageControl" x:FieldModifier="private" />
     </DockPanel>
 
 </phone:PhoneApplicationPage>
