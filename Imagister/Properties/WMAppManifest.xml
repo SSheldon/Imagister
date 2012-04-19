@@ -2,7 +2,7 @@
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
   <App xmlns="" ProductID="{3a095b4d-3871-4c3d-9413-462f7d11fdc6}" Title="Imagister" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="Imagister author" Description="Sample description" Publisher="Imagister">
-    <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
+    <IconPath IsRelative="true" IsResource="false">Images/ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES"/>
       <Capability Name="ID_CAP_IDENTITY_DEVICE"/>
@@ -25,7 +25,7 @@
     <Tokens>
       <PrimaryToken TokenID="ImagisterToken" TaskName="_default">
         <TemplateType5>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Images/Background.png</BackgroundImageURI>
           <Count>0</Count>
           <Title>Imagister</Title>
         </TemplateType5>

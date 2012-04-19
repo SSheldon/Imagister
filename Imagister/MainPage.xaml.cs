@@ -26,7 +26,7 @@ namespace Imagister
 
 		public void LoadImage()
 		{
-			Uri uri = new Uri("/Imagister;component/test.jpg", UriKind.Relative);
+			Uri uri = new Uri("Images/lenna.jpg", UriKind.Relative);
 			StreamResourceInfo sri = Application.GetResourceStream(uri);
 			bmp = PictureDecoder.DecodeJpeg(sri.Stream);
 			img = new ManipulableImage(bmp.PixelHeight, bmp.PixelWidth, bmp.Pixels);
