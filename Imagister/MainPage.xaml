@@ -17,6 +17,12 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton Text="Open"
+                IconUri="/Images/appbar.folder.png"
+                Click="OpenClick" />
+            <shell:ApplicationBarIconButton Text="Save"
+                IconUri="/Images/appbar.save.png"
+                Click="SaveClick" />
             <shell:ApplicationBar.MenuItems>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>

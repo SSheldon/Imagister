@@ -65,5 +65,13 @@ namespace Imagister
 			img.FlipVertical();
 			imageControl.Source = bmp;
 		}
+
+		private void OpenClick(object sender, EventArgs e)
+		{
+		}
+
+		private void SaveClick(object sender, EventArgs e)
+		{
+		}
 	}
 }
