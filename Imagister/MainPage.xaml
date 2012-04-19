@@ -5,6 +5,7 @@
     xmlns:p="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
@@ -22,8 +23,30 @@
     </phone:PhoneApplicationPage.ApplicationBar>
 
     <DockPanel>
-        <p:Pivot DockPanel.Dock="Bottom" Title="" Margin="0,-26,0,0">
+        <p:Pivot DockPanel.Dock="Bottom" Title="" Margin="0,-26,0,0" Height="280">
             <p:PivotItem Header="transform" Margin="0">
+                <ListBox>
+                    <ListBoxItem Margin="12,0,12,12">
+                        <TextBlock Text="Rotate right 90°"
+                            Style="{StaticResource PhoneTextLargeStyle}" />
+                    </ListBoxItem>
+                    <ListBoxItem Margin="12,0,12,12">
+                        <TextBlock Text="Rotate left 90°"
+                            Style="{StaticResource PhoneTextLargeStyle}" />
+                    </ListBoxItem>
+                    <ListBoxItem Margin="12,0,12,12">
+                        <TextBlock Text="Rotate 180°"
+                            Style="{StaticResource PhoneTextLargeStyle}" />
+                    </ListBoxItem>
+                    <ListBoxItem Margin="12,0,12,12">
+                        <TextBlock Text="Flip horizontally"
+                            Style="{StaticResource PhoneTextLargeStyle}" />
+                    </ListBoxItem>
+                    <ListBoxItem Margin="12,0,12,12">
+                        <TextBlock Text="Flip vertically"
+                            Style="{StaticResource PhoneTextLargeStyle}" />
+                    </ListBoxItem>
+                </ListBox>
             </p:PivotItem>
             <p:PivotItem Header="filters" Margin="0">
             </p:PivotItem>
