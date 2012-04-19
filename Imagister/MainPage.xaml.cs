@@ -33,5 +33,37 @@ namespace Imagister
 
 			imageControl.Source = bmp;
 		}
+
+		private void RotateRightTap(object sender, GestureEventArgs e)
+		{
+			bmp = new WriteableBitmap(bmp.PixelHeight, bmp.PixelWidth);
+			img.RotateRight(bmp.Pixels);
+			imageControl.Source = bmp;
+		}
+
+		private void RotateLeftTap(object sender, GestureEventArgs e)
+		{
+			bmp = new WriteableBitmap(bmp.PixelHeight, bmp.PixelWidth);
+			img.RotateLeft(bmp.Pixels);
+			imageControl.Source = bmp;
+		}
+
+		private void RotateDownTap(object sender, GestureEventArgs e)
+		{
+			img.RotateDown();
+			imageControl.Source = bmp;
+		}
+
+		private void FlipHorizontalTap(object sender, GestureEventArgs e)
+		{
+			img.FlipHorizontal();
+			imageControl.Source = bmp;
+		}
+
+		private void FlipVerticalTap(object sender, GestureEventArgs e)
+		{
+			img.FlipVertical();
+			imageControl.Source = bmp;
+		}
 	}
 }
