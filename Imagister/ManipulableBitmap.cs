@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Phone;
 
@@ -9,6 +10,14 @@ namespace Imagister
 	{
 		private Stream source;
 		private WriteableBitmap bmp;
+
+		/// <summary>
+		/// Gets an ImageSource for this ManipulableBitmap.
+		/// </summary>
+		public ImageSource SourceImage
+		{
+			get { return bmp; }
+		}
 
 		/// <summary>
 		/// Constructs a ManipulableBitmap.
@@ -29,5 +38,23 @@ namespace Imagister
 		public ManipulableBitmap(Stream source)
 			: this(source, PictureDecoder.DecodeJpeg(source))
 		{ }
+
+		/// <summary>
+		/// Rotates this ManipulableBitmap 90° to the right.
+		/// </summary>
+		public override void RotateRight()
+		{
+			bmp = new WriteableBitmap(bmp.PixelHeight, bmp.PixelWidth);
+			RotateRight(bmp.Pixels);
+		}
+
+		/// <summary>
+		/// Rotates this ManipulableBitmap 90° to the left.
+		/// </summary>
+		public override void RotateLeft()
+		{
+			bmp = new WriteableBitmap(bmp.PixelHeight, bmp.PixelWidth);
+			RotateLeft(bmp.Pixels);
+		}
 	}
 }
