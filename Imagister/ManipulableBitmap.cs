@@ -6,6 +6,9 @@ using Microsoft.Phone;
 
 namespace Imagister
 {
+	/// <summary>
+	/// Represents a Bitmap that can be manipulated.
+	/// </summary>
 	public class ManipulableBitmap : ManipulableImage
 	{
 		private WriteableBitmap bmp;
