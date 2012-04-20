@@ -17,6 +17,9 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton Text="Revert"
+                IconUri="/Images/appbar.undo.png"
+                Click="RevertClick" />
             <shell:ApplicationBarIconButton Text="Open"
                 IconUri="/Images/appbar.folder.png"
                 Click="OpenClick" />

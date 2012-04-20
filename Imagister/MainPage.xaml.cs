@@ -56,6 +56,12 @@ namespace Imagister
 			imageControl.Source = bmp.SourceImage;
 		}
 
+		private void RevertClick(object sender, EventArgs e)
+		{
+			bmp = info.Bitmap;
+			imageControl.Source = bmp.SourceImage;
+		}
+
 		private void OpenClick(object sender, EventArgs e)
 		{
 		}
