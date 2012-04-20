@@ -257,15 +257,16 @@ namespace Imagister
 
 		/// <summary>
 		/// A BilinearResizer resizes a PixelsArray using bilinear filtering.
+		/// Algorithm adapted from:
+		/// http://tech-algorithm.com/articles/bilinear-image-scaling/
 		/// </summary>
 		private class BilinearResizer
 		{
-			//Adapted from http://tech-algorithm.com/articles/bilinear-image-scaling/
 			private PixelsArray old, res;
 			private float x_ratio, y_ratio;
 
 			/// <summary>
-			/// Construcs a BilinearResizer.
+			/// Constructs a BilinearResizer.
 			/// </summary>
 			/// <param name="old">The old PixelsArray to resize.</param>
 			/// <param name="res">The result PixelsArray to resize to.</param>
