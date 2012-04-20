@@ -14,8 +14,7 @@ namespace Imagister
 {
 	public partial class MainPage : PhoneApplicationPage
 	{
-		private ManipulableImage img;
-		private WriteableBitmap bmp;
+		private ManipulableBitmap bmp;
 
 		// Constructor
 		public MainPage()
@@ -28,42 +27,39 @@ namespace Imagister
 		{
 			Uri uri = new Uri("Images/lenna.jpg", UriKind.Relative);
 			StreamResourceInfo sri = Application.GetResourceStream(uri);
-			bmp = PictureDecoder.DecodeJpeg(sri.Stream);
-			img = new ManipulableImage(bmp.PixelHeight, bmp.PixelWidth, bmp.Pixels);
+			bmp = new ManipulableBitmap(sri.Stream);
 
-			imageControl.Source = bmp;
+			imageControl.Source = bmp.SourceImage;
 		}
 
 		private void RotateRightTap(object sender, GestureEventArgs e)
 		{
-			bmp = new WriteableBitmap(bmp.PixelHeight, bmp.PixelWidth);
-			img.RotateRight(bmp.Pixels);
-			imageControl.Source = bmp;
+			bmp.RotateRight();
+			imageControl.Source = bmp.SourceImage;
 		}
 
 		private void RotateLeftTap(object sender, GestureEventArgs e)
 		{
-			bmp = new WriteableBitmap(bmp.PixelHeight, bmp.PixelWidth);
-			img.RotateLeft(bmp.Pixels);
-			imageControl.Source = bmp;
+			bmp.RotateLeft();
+			imageControl.Source = bmp.SourceImage;
 		}
 
 		private void RotateDownTap(object sender, GestureEventArgs e)
 		{
-			img.RotateDown();
-			imageControl.Source = bmp;
+			bmp.RotateDown();
+			imageControl.Source = bmp.SourceImage;
 		}
 
 		private void FlipHorizontalTap(object sender, GestureEventArgs e)
 		{
-			img.FlipHorizontal();
-			imageControl.Source = bmp;
+			bmp.FlipHorizontal();
+			imageControl.Source = bmp.SourceImage;
 		}
 
 		private void FlipVerticalTap(object sender, GestureEventArgs e)
 		{
-			img.FlipVertical();
-			imageControl.Source = bmp;
+			bmp.FlipVertical();
+			imageControl.Source = bmp.SourceImage;
 		}
 
 		private void OpenClick(object sender, EventArgs e)
