@@ -111,7 +111,7 @@ namespace Imagister
 		/// <summary>
 		/// Rotates this ManipulableImage 90° to the right.
 		/// </summary>
-		public void RotateRight()
+		public virtual void RotateRight()
 		{
 			RotateRight(new int[Height * Width]);
 		}
@@ -138,7 +138,7 @@ namespace Imagister
 		/// <summary>
 		/// Rotates this ManipulableImage 90° to the left.
 		/// </summary>
-		public void RotateLeft()
+		public virtual void RotateLeft()
 		{
 			RotateLeft(new int[Height * Width]);
 		}
@@ -166,7 +166,7 @@ namespace Imagister
 		/// Crops this ManipulableImage to the specified Rectangle.
 		/// </summary>
 		/// <param name="rect">The Rectangle to crop to.</param>
-		public void Crop(PixRect rect)
+		public virtual void Crop(PixRect rect)
 		{
 			Crop(rect, new int[rect.Height * rect.Width]);
 		}
@@ -196,7 +196,7 @@ namespace Imagister
 		/// this ManipulableImage.</param>
 		/// <param name="width">The width to which to resize
 		/// this ManipulableImage.</param>
-		public void Resize(int height, int width)
+		public virtual void Resize(int height, int width)
 		{
 			Resize(height, width, new int[height * width]);
 		}
@@ -233,7 +233,7 @@ namespace Imagister
 		/// this ManipulableImage.</param>
 		/// <param name="width">The width to which to resize
 		/// this ManipulableImage.</param>
-		public void BilinearResize(int height, int width)
+		public virtual void BilinearResize(int height, int width)
 		{
 			BilinearResize(height, width, new int[height * width]);
 		}
