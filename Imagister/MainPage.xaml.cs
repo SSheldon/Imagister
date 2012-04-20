@@ -26,6 +26,7 @@ namespace Imagister
 			imageControl.Source = bmp.SourceImage;
 		}
 
+		#region Transform Handlers
 		private void RotateRightTap(object sender, GestureEventArgs e)
 		{
 			bmp.RotateRight();
@@ -55,7 +56,9 @@ namespace Imagister
 			bmp.FlipVertical();
 			imageControl.Source = bmp.SourceImage;
 		}
+		#endregion
 
+		#region Filter Handlers
 		private void GrayscaleTap(object sender, GestureEventArgs e)
 		{
 			bmp.Apply(Shaders.Grayscale);
@@ -85,7 +88,9 @@ namespace Imagister
 			Ditherer.Dither(bmp, 4);
 			imageControl.Source = bmp.SourceImage;
 		}
+		#endregion
 
+		#region AppBar Handlers
 		private void RevertClick(object sender, EventArgs e)
 		{
 			bmp = info.Bitmap;
@@ -99,5 +104,6 @@ namespace Imagister
 		private void SaveClick(object sender, EventArgs e)
 		{
 		}
+		#endregion
 	}
 }
