@@ -15,20 +15,14 @@ namespace Imagister
 	public partial class MainPage : PhoneApplicationPage
 	{
 		private ManipulableBitmap bmp;
+		private ImageInfo info;
 
 		// Constructor
 		public MainPage()
 		{
 			InitializeComponent();
-			LoadImage();
-		}
-
-		public void LoadImage()
-		{
-			Uri uri = new Uri("Images/lenna.jpg", UriKind.Relative);
-			StreamResourceInfo sri = Application.GetResourceStream(uri);
-			bmp = new ManipulableBitmap(sri.Stream);
-
+			info = new ImageUri(new Uri("Images/lenna.jpg", UriKind.Relative));
+			bmp = info.Bitmap;
 			imageControl.Source = bmp.SourceImage;
 		}
 
