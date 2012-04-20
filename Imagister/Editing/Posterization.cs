@@ -43,17 +43,6 @@ namespace Imagister
 
 			return (a << 24) | (r << 16) | (g << 8) | b;
 		}
-
-		/// <summary>
-		/// Returns a Shader that Posterizes to the specified depth.
-		/// </summary>
-		/// <param name="depth">The number of possible values
-		/// for each component of a color.</param>
-		/// <returns>A posterization Shader.</returns>
-		public static Shader GetShader(int depth)
-		{
-			return (int argb) => Posterize(argb, depth);
-		}
 	}
 
 	public class Ditherer

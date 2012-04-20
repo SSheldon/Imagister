@@ -197,5 +197,16 @@ namespace Imagister
 		{
 			return (int argb) => CorrectGamma(argb, gamma);
 		}
+
+		/// <summary>
+		/// Gets a Shader that Posterizes to the specified depth.
+		/// </summary>
+		/// <param name="depth">The number of possible values
+		/// for each component of a color.</param>
+		/// <returns>A posterization Shader.</returns>
+		public static Shader Posterize(int depth)
+		{
+			return (int argb) => Posterizer.Posterize(argb, depth);
+		}
 	}
 }
