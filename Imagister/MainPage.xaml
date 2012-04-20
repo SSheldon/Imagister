@@ -37,23 +37,23 @@
                 <ListBox>
                     <ListBoxItem Margin="12,0,12,12" Tap="RotateRightTap">
                         <TextBlock Text="Rotate right 90°"
-                            Style="{StaticResource PhoneTextLargeStyle}" />
+                            Style="{StaticResource PhoneTextExtraLargeStyle}" />
                     </ListBoxItem>
                     <ListBoxItem Margin="12,0,12,12" Tap="RotateLeftTap">
                         <TextBlock Text="Rotate left 90°"
-                            Style="{StaticResource PhoneTextLargeStyle}" />
+                            Style="{StaticResource PhoneTextExtraLargeStyle}" />
                     </ListBoxItem>
                     <ListBoxItem Margin="12,0,12,12" Tap="RotateDownTap">
                         <TextBlock Text="Rotate 180°"
-                            Style="{StaticResource PhoneTextLargeStyle}" />
+                            Style="{StaticResource PhoneTextExtraLargeStyle}" />
                     </ListBoxItem>
                     <ListBoxItem Margin="12,0,12,12" Tap="FlipHorizontalTap">
                         <TextBlock Text="Flip horizontally"
-                            Style="{StaticResource PhoneTextLargeStyle}" />
+                            Style="{StaticResource PhoneTextExtraLargeStyle}" />
                     </ListBoxItem>
                     <ListBoxItem Margin="12,0,12,12" Tap="FlipVerticalTap">
                         <TextBlock Text="Flip vertically"
-                            Style="{StaticResource PhoneTextLargeStyle}" />
+                            Style="{StaticResource PhoneTextExtraLargeStyle}" />
                     </ListBoxItem>
                 </ListBox>
             </p:PivotItem>
