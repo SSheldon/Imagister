@@ -72,6 +72,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManipulableBitmap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResizePage.xaml.cs">
       <DependentUpon>ResizePage.xaml</DependentUpon>
