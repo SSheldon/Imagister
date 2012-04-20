@@ -56,6 +56,36 @@ namespace Imagister
 			imageControl.Source = bmp.SourceImage;
 		}
 
+		private void GrayscaleTap(object sender, GestureEventArgs e)
+		{
+			bmp.Apply(Shaders.Grayscale);
+			imageControl.Source = bmp.SourceImage;
+		}
+
+		private void InvertTap(object sender, GestureEventArgs e)
+		{
+			bmp.Apply(Shaders.Invert);
+			imageControl.Source = bmp.SourceImage;
+		}
+
+		private void SepiaTap(object sender, GestureEventArgs e)
+		{
+			bmp.Apply(Shaders.Sepia);
+			imageControl.Source = bmp.SourceImage;
+		}
+
+		private void PosterizeTap(object sender, GestureEventArgs e)
+		{
+			bmp.Apply(Shaders.Posterize(4));
+			imageControl.Source = bmp.SourceImage;
+		}
+
+		private void DitherTap(object sender, GestureEventArgs e)
+		{
+			Ditherer.Dither(bmp, 4);
+			imageControl.Source = bmp.SourceImage;
+		}
+
 		private void RevertClick(object sender, EventArgs e)
 		{
 			bmp = info.Bitmap;

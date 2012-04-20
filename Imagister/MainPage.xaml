@@ -58,6 +58,28 @@
                 </ListBox>
             </p:PivotItem>
             <p:PivotItem Header="filters" Margin="0">
+                <ListBox>
+                    <ListBoxItem Margin="12,0,12,12" Tap="GrayscaleTap">
+                        <TextBlock Text="Grayscale"
+                            Style="{StaticResource PhoneTextExtraLargeStyle}" />
+                    </ListBoxItem>
+                    <ListBoxItem Margin="12,0,12,12" Tap="InvertTap">
+                        <TextBlock Text="Invert"
+                            Style="{StaticResource PhoneTextExtraLargeStyle}" />
+                    </ListBoxItem>
+                    <ListBoxItem Margin="12,0,12,12" Tap="SepiaTap">
+                        <TextBlock Text="Sepia"
+                            Style="{StaticResource PhoneTextExtraLargeStyle}" />
+                    </ListBoxItem>
+                    <ListBoxItem Margin="12,0,12,12" Tap="PosterizeTap">
+                        <TextBlock Text="Posterize (64 colors)"
+                            Style="{StaticResource PhoneTextExtraLargeStyle}" />
+                    </ListBoxItem>
+                    <ListBoxItem Margin="12,0,12,12" Tap="DitherTap">
+                        <TextBlock Text="Dither (64 colors)"
+                            Style="{StaticResource PhoneTextExtraLargeStyle}" />
+                    </ListBoxItem>
+                </ListBox>
             </p:PivotItem>
         </p:Pivot>
         <Image x:Name="imageControl" x:FieldModifier="private" />
