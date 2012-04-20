@@ -255,12 +255,20 @@ namespace Imagister
 			this.pixels = res;
 		}
 
+		/// <summary>
+		/// A BilinearResizer resizes a PixelsArray using bilinear filtering.
+		/// </summary>
 		private class BilinearResizer
 		{
 			//Adapted from http://tech-algorithm.com/articles/bilinear-image-scaling/
 			private PixelsArray old, res;
 			private float x_ratio, y_ratio;
 
+			/// <summary>
+			/// Construcs a BilinearResizer.
+			/// </summary>
+			/// <param name="old">The old PixelsArray to resize.</param>
+			/// <param name="res">The result PixelsArray to resize to.</param>
 			public BilinearResizer(PixelsArray old, PixelsArray res)
 			{
 				this.old = old;
@@ -269,6 +277,9 @@ namespace Imagister
 				y_ratio = ((float)(old.Height - 1)) / res.Height;
 			}
 
+			/// <summary>
+			/// Resizes the old PixelsArray into the result PixelsArray.
+			/// </summary>
 			public void Resize()
 			{
 				int[] pixels = res.Pixels;
@@ -277,6 +288,12 @@ namespace Imagister
 					pixels[i] = GetPixel(i / width, i % width);
 			}
 
+			/// <summary>
+			/// Gets an ARGB pixel for the resized result PixelsArray.
+			/// </summary>
+			/// <param name="i">The column index of the pixel.</param>
+			/// <param name="j">The row index of the pixel.</param>
+			/// <returns>The pixel for this location.</returns>
 			public int GetPixel(int i, int j)
 			{
 				int x = (int)(x_ratio * j);
