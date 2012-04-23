@@ -10,17 +10,23 @@ using System.Windows.Navigation;
 using System.Windows.Resources;
 using Microsoft.Phone;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 
 namespace Imagister
 {
 	public partial class MainPage : PhoneApplicationPage
 	{
 		private ManipulableBitmap bmp;
+		private PhotoChooserTask chooser;
 
 		// Constructor
 		public MainPage()
 		{
 			InitializeComponent();
+
+			chooser = new PhotoChooserTask();
+			chooser.ShowCamera = true;
+			chooser.Completed += new EventHandler<PhotoResult>(PhotoChosen);
 		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -42,6 +48,13 @@ namespace Imagister
 				bmp = new ManipulableBitmap(info);
 				imageControl.Source = bmp.SourceImage;
 			}
+		}
+
+		private void PhotoChosen(object sender, PhotoResult e)
+		{
+			ImageInfo info = new ImageResult(e);
+			bmp = new ManipulableBitmap(info);
+			imageControl.Source = bmp.SourceImage;
 		}
 
 		#region Transform Handlers
@@ -117,6 +130,7 @@ namespace Imagister
 
 		private void OpenClick(object sender, EventArgs e)
 		{
+			chooser.Show();
 		}
 
 		private void SaveClick(object sender, EventArgs e)
