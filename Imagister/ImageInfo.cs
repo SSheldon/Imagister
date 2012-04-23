@@ -18,14 +18,6 @@ namespace Imagister
 		{
 			get;
 		}
-
-		/// <summary>
-		/// Gets a ManipulableBitmap of the image.
-		/// </summary>
-		public virtual ManipulableBitmap Bitmap
-		{
-			get { return new ManipulableBitmap(Stream); }
-		}
 	}
 
 	/// <summary>

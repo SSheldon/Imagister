@@ -12,6 +12,7 @@ namespace Imagister
 	public class ManipulableBitmap : ManipulableImage
 	{
 		private WriteableBitmap bmp;
+		private ImageInfo info;
 
 		/// <summary>
 		/// Gets an ImageSource for this ManipulableBitmap.
@@ -36,9 +37,32 @@ namespace Imagister
 		/// Constructs a ManipulableBitmap.
 		/// </summary>
 		/// <param name="source">The JPEG source Stream for the image.</param>
-		public ManipulableBitmap(Stream source)
+		private ManipulableBitmap(Stream source)
 			: this(PictureDecoder.DecodeJpeg(source))
 		{ }
+
+		/// <summary>
+		/// Constructs a ManipulableBitmap.
+		/// </summary>
+		/// <param name="info">The information to use to load an image
+		/// for the ManipulableBitmap.</param>
+		public ManipulableBitmap(ImageInfo info)
+			: this(info.Stream)
+		{
+			this.info = info;
+		}
+
+		/// <summary>
+		/// Returns a reloaded version of this ManipulableBitmap.
+		/// </summary>
+		/// <returns>
+		/// A ManipulableBitmap of this ManipulableBitmap's image
+		/// with all modifications reverted.
+		/// </returns>
+		public ManipulableBitmap Revert()
+		{
+			return new ManipulableBitmap(info);
+		}
 
 		/// <summary>
 		/// Rotates this ManipulableBitmap 90° to the right.

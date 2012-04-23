@@ -15,14 +15,14 @@ namespace Imagister
 	public partial class MainPage : PhoneApplicationPage
 	{
 		private ManipulableBitmap bmp;
-		private ImageInfo info;
 
 		// Constructor
 		public MainPage()
 		{
 			InitializeComponent();
+			ImageInfo info;
 			info = new ImageUri(new Uri("Images/lenna.jpg", UriKind.Relative));
-			bmp = info.Bitmap;
+			bmp = new ManipulableBitmap(info);
 			imageControl.Source = bmp.SourceImage;
 		}
 
@@ -93,7 +93,7 @@ namespace Imagister
 		#region AppBar Handlers
 		private void RevertClick(object sender, EventArgs e)
 		{
-			bmp = info.Bitmap;
+			bmp = bmp.Revert();
 			imageControl.Source = bmp.SourceImage;
 		}
 
