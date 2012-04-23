@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Resources;
 using Microsoft.Phone;
 using Microsoft.Phone.Controls;
@@ -20,10 +21,27 @@ namespace Imagister
 		public MainPage()
 		{
 			InitializeComponent();
-			ImageInfo info;
-			info = new ImageUri(new Uri("Images/lenna.jpg", UriKind.Relative));
-			bmp = new ManipulableBitmap(info);
-			imageControl.Source = bmp.SourceImage;
+		}
+
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+			if (bmp == null)
+			{
+				ImageInfo info;
+				var query = this.NavigationContext.QueryString;
+				if (query.ContainsKey("token"))
+				{
+					info = new ImageToken(query["token"]);
+				}
+				else
+				{
+					Uri uri = new Uri("Images/lenna.jpg", UriKind.Relative);
+					info = new ImageUri(uri);
+				}
+				bmp = new ManipulableBitmap(info);
+				imageControl.Source = bmp.SourceImage;
+			}
 		}
 
 		#region Transform Handlers
