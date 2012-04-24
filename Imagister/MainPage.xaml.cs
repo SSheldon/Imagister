@@ -49,14 +49,19 @@ namespace Imagister
 					Uri uri = new Uri("Images/lenna.jpg", UriKind.Relative);
 					stream = Application.GetResourceStream(uri).Stream;
 				}
-				bmp = new ManipulableBitmap(stream);
-				imageControl.Source = bmp.SourceImage;
+				SetupImage(stream);
 			}
 		}
 
 		private void PhotoChosen(object sender, PhotoResult e)
 		{
-			bmp = new ManipulableBitmap(e.ChosenPhoto);
+			SetupImage(e.ChosenPhoto);
+		}
+
+		private void SetupImage(Stream stream)
+		{
+			WriteableBitmap pic = PictureDecoder.DecodeJpeg(stream);
+			bmp = new ManipulableBitmap(pic);
 			imageControl.Source = bmp.SourceImage;
 		}
 
