@@ -122,6 +122,7 @@ namespace Imagister
 		#region AppBar Handlers
 		private void RevertClick(object sender, EventArgs e)
 		{
+			bmp.Load();
 		}
 
 		private void OpenClick(object sender, EventArgs e)

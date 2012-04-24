@@ -28,8 +28,7 @@ namespace Imagister
 		{
 			get
 			{
-				if (image == null) Load();
-				return image.SourceImage;
+				return (image != null ? image.SourceImage : null);
 			}
 		}
 
