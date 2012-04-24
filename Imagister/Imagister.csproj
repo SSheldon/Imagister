@@ -70,7 +70,6 @@
     <Compile Include="Editing\Pixels.cs" />
     <Compile Include="Editing\Posterization.cs" />
     <Compile Include="Editing\Shader.cs" />
-    <Compile Include="ImageInfo.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

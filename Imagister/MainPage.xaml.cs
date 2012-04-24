@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,7 @@ using System.Windows.Resources;
 using Microsoft.Phone;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
+using Microsoft.Xna.Framework.Media;
 
 namespace Imagister
 {
@@ -34,26 +36,27 @@ namespace Imagister
 			base.OnNavigatedTo(e);
 			if (bmp == null)
 			{
-				ImageInfo info;
+				Stream stream;
 				var query = this.NavigationContext.QueryString;
 				if (query.ContainsKey("token"))
 				{
-					info = new ImageToken(query["token"]);
+					MediaLibrary lib = new MediaLibrary();
+					Picture pic = lib.GetPictureFromToken(query["token"]);
+					stream = pic.GetImage();
 				}
 				else
 				{
 					Uri uri = new Uri("Images/lenna.jpg", UriKind.Relative);
-					info = new ImageUri(uri);
+					stream = Application.GetResourceStream(uri).Stream;
 				}
-				bmp = new ManipulableBitmap(info.Stream);
+				bmp = new ManipulableBitmap(stream);
 				imageControl.Source = bmp.SourceImage;
 			}
 		}
 
 		private void PhotoChosen(object sender, PhotoResult e)
 		{
-			ImageInfo info = new ImageResult(e);
-			bmp = new ManipulableBitmap(info.Stream);
+			bmp = new ManipulableBitmap(e.ChosenPhoto);
 			imageControl.Source = bmp.SourceImage;
 		}
 
