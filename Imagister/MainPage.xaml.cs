@@ -27,7 +27,8 @@ namespace Imagister
 			InitializeComponent();
 
 			bmp = new PreviewBitmap();
-			imageControl.DataContext = bmp;
+			DataContext = bmp;
+
 			chooser = new PhotoChooserTask();
 			chooser.ShowCamera = true;
 			chooser.Completed += (sender, e) => bmp.Load(e.ChosenPhoto);
