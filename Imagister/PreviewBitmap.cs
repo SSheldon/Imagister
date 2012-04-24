@@ -103,5 +103,15 @@ namespace Imagister
 			image = new ManipulableBitmap(bmp);
 			NotifyImageChanged();
 		}
+
+		/// <summary>
+		/// Manipulates this PreviewBitmap's underlying ManipulableBitmap.
+		/// </summary>
+		/// <param name="manipulate">The manipulation to perform.</param>
+		public void Manipulate(Action<ManipulableBitmap> manipulate)
+		{
+			manipulate(image);
+			NotifyImageChanged();
+		}
 	}
 }
