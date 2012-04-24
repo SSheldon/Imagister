@@ -22,6 +22,14 @@ namespace Imagister
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
+		/// Indicates whether this PreviewBitmap is loaded.
+		/// </summary>
+		public bool IsLoaded
+		{
+			get { return path != null && image != null; }
+		}
+
+		/// <summary>
 		/// Gets an ImageSource for a preview of this PreviewBitmap.
 		/// </summary>
 		public ImageSource PreviewSource
@@ -48,23 +56,12 @@ namespace Imagister
 		}
 
 		/// <summary>
-		/// Constructs a PreviewBitmap.
+		/// Loads this PreviewBitmap from a JPEG source.
 		/// </summary>
-		/// <param name="stream">The JPEG source Stream for the image.</param>
-		public PreviewBitmap(Stream stream)
+		/// <param name="stream">The JPEG stream to load.</param>
+		public void Load(Stream stream)
 		{
-			path = CopyJpegStream(stream);
-		}
-
-		/// <summary>
-		/// Copies a JPEG Stream into a file.
-		/// </summary>
-		/// <param name="stream">The JPEG Stream to copy.</param>
-		/// <returns>The path to the copied JPEG file
-		/// in isolated storage.</returns>
-		private static string CopyJpegStream(Stream stream)
-		{
-			string path = Guid.NewGuid().ToString() + ".jpg";
+			path = Guid.NewGuid().ToString() + ".jpg";
 			using (IsolatedStorageFile dir =
 				IsolatedStorageFile.GetUserStoreForApplication())
 			{
@@ -73,7 +70,7 @@ namespace Imagister
 					stream.CopyTo(dest);
 				}
 			}
-			return path;
+			Load();
 		}
 
 		/// <summary>

@@ -26,15 +26,17 @@ namespace Imagister
 		{
 			InitializeComponent();
 
+			bmp = new PreviewBitmap();
+			imageControl.DataContext = bmp;
 			chooser = new PhotoChooserTask();
 			chooser.ShowCamera = true;
-			chooser.Completed += new EventHandler<PhotoResult>(PhotoChosen);
+			chooser.Completed += (sender, e) => bmp.Load(e.ChosenPhoto);
 		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
-			if (bmp == null)
+			if (!bmp.IsLoaded)
 			{
 				Stream stream;
 				var query = this.NavigationContext.QueryString;
@@ -49,20 +51,8 @@ namespace Imagister
 					Uri uri = new Uri("Images/lenna.jpg", UriKind.Relative);
 					stream = Application.GetResourceStream(uri).Stream;
 				}
-				SetupImage(stream);
+				bmp.Load(stream);
 			}
-		}
-
-		private void PhotoChosen(object sender, PhotoResult e)
-		{
-			SetupImage(e.ChosenPhoto);
-		}
-
-		private void SetupImage(Stream stream)
-		{
-			bmp = new PreviewBitmap(stream);
-			imageControl.DataContext = bmp;
-			bmp.Load();
 		}
 
 		#region Transform Handlers
