@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Windows.Media;
@@ -10,10 +11,15 @@ namespace Imagister
 	/// <summary>
 	/// Represents a preview of a ManipulableBitmap.
 	/// </summary>
-	public class PreviewBitmap
+	public class PreviewBitmap : INotifyPropertyChanged
 	{
 		private string path;
 		private ManipulableBitmap image;
+
+		/// <summary>
+		/// Occurs when a property value changes.
+		/// </summary>
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
 		/// Gets an ImageSource for a preview of this PreviewBitmap.
@@ -72,6 +78,19 @@ namespace Imagister
 		}
 
 		/// <summary>
+		/// Raises the PropertyChanged event to notify listeners that
+		/// this PreviewBitmap's image has changed.
+		/// </summary>
+		private void NotifyImageChanged()
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this,
+					new PropertyChangedEventArgs("PreviewSource"));
+			}
+		}
+
+		/// <summary>
 		/// Loads this PreviewBitmap from its JPEG source.
 		/// </summary>
 		public void Load()
@@ -82,6 +101,7 @@ namespace Imagister
 				bmp = PictureDecoder.DecodeJpeg(source);
 			}
 			image = new ManipulableBitmap(bmp);
+			NotifyImageChanged();
 		}
 	}
 }
