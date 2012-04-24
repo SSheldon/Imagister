@@ -45,7 +45,7 @@ namespace Imagister
 					Uri uri = new Uri("Images/lenna.jpg", UriKind.Relative);
 					info = new ImageUri(uri);
 				}
-				bmp = new ManipulableBitmap(info);
+				bmp = new ManipulableBitmap(info.Stream);
 				imageControl.Source = bmp.SourceImage;
 			}
 		}
@@ -53,7 +53,7 @@ namespace Imagister
 		private void PhotoChosen(object sender, PhotoResult e)
 		{
 			ImageInfo info = new ImageResult(e);
-			bmp = new ManipulableBitmap(info);
+			bmp = new ManipulableBitmap(info.Stream);
 			imageControl.Source = bmp.SourceImage;
 		}
 
@@ -124,8 +124,6 @@ namespace Imagister
 		#region AppBar Handlers
 		private void RevertClick(object sender, EventArgs e)
 		{
-			bmp = bmp.Revert();
-			imageControl.Source = bmp.SourceImage;
 		}
 
 		private void OpenClick(object sender, EventArgs e)
