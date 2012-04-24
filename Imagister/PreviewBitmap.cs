@@ -56,6 +56,19 @@ namespace Imagister
 		}
 
 		/// <summary>
+		/// Raises the PropertyChanged event to notify listeners that
+		/// this PreviewBitmap's image has changed.
+		/// </summary>
+		private void NotifyImageChanged()
+		{
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this,
+					new PropertyChangedEventArgs("PreviewSource"));
+			}
+		}
+
+		/// <summary>
 		/// Loads this PreviewBitmap from a JPEG source.
 		/// </summary>
 		/// <param name="stream">The JPEG stream to load.</param>
@@ -71,19 +84,6 @@ namespace Imagister
 				}
 			}
 			Load();
-		}
-
-		/// <summary>
-		/// Raises the PropertyChanged event to notify listeners that
-		/// this PreviewBitmap's image has changed.
-		/// </summary>
-		private void NotifyImageChanged()
-		{
-			if (PropertyChanged != null)
-			{
-				PropertyChanged(this,
-					new PropertyChangedEventArgs("PreviewSource"));
-			}
 		}
 
 		/// <summary>
