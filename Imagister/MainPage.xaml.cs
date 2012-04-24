@@ -18,7 +18,7 @@ namespace Imagister
 {
 	public partial class MainPage : PhoneApplicationPage
 	{
-		private ManipulableBitmap bmp;
+		private PreviewBitmap bmp;
 		private PhotoChooserTask chooser;
 
 		// Constructor
@@ -60,72 +60,62 @@ namespace Imagister
 
 		private void SetupImage(Stream stream)
 		{
-			WriteableBitmap pic = PictureDecoder.DecodeJpeg(stream);
-			bmp = new ManipulableBitmap(pic);
-			imageControl.Source = bmp.SourceImage;
+			bmp = new PreviewBitmap(stream);
+			imageControl.DataContext = bmp;
+			bmp.Load();
 		}
 
 		#region Transform Handlers
 		private void RotateRightTap(object sender, GestureEventArgs e)
 		{
-			bmp.RotateRight();
-			imageControl.Source = bmp.SourceImage;
+			bmp.Manipulate(img => img.RotateRight());
 		}
 
 		private void RotateLeftTap(object sender, GestureEventArgs e)
 		{
-			bmp.RotateLeft();
-			imageControl.Source = bmp.SourceImage;
+			bmp.Manipulate(img => img.RotateLeft());
 		}
 
 		private void RotateDownTap(object sender, GestureEventArgs e)
 		{
-			bmp.RotateDown();
-			imageControl.Source = bmp.SourceImage;
+			bmp.Manipulate(img => img.RotateDown());
 		}
 
 		private void FlipHorizontalTap(object sender, GestureEventArgs e)
 		{
-			bmp.FlipHorizontal();
-			imageControl.Source = bmp.SourceImage;
+			bmp.Manipulate(img => img.FlipHorizontal());
 		}
 
 		private void FlipVerticalTap(object sender, GestureEventArgs e)
 		{
-			bmp.FlipVertical();
-			imageControl.Source = bmp.SourceImage;
+			bmp.Manipulate(img => img.FlipVertical());
 		}
 		#endregion
 
 		#region Filter Handlers
 		private void GrayscaleTap(object sender, GestureEventArgs e)
 		{
-			bmp.Apply(Shaders.Grayscale);
-			imageControl.Source = bmp.SourceImage;
+			bmp.Manipulate(img => img.Apply(Shaders.Grayscale));
 		}
 
 		private void InvertTap(object sender, GestureEventArgs e)
 		{
-			bmp.Apply(Shaders.Invert);
-			imageControl.Source = bmp.SourceImage;
+			bmp.Manipulate(img => img.Apply(Shaders.Invert));
 		}
 
 		private void SepiaTap(object sender, GestureEventArgs e)
 		{
-			bmp.Apply(Shaders.Sepia);
-			imageControl.Source = bmp.SourceImage;
+			bmp.Manipulate(img => img.Apply(Shaders.Sepia));
 		}
 
 		private void PosterizeTap(object sender, GestureEventArgs e)
 		{
-			bmp.Apply(Shaders.Posterize(4));
-			imageControl.Source = bmp.SourceImage;
+			bmp.Manipulate(img => img.Apply(Shaders.Posterize(4)));
 		}
 
 		private void DitherTap(object sender, GestureEventArgs e)
 		{
-			Ditherer.Dither(bmp, 4);
-			imageControl.Source = bmp.SourceImage;
+			bmp.Manipulate(img => Ditherer.Dither(img, 4));
 		}
 		#endregion
 

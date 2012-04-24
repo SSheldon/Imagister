@@ -82,7 +82,8 @@
                 </ListBox>
             </p:PivotItem>
         </p:Pivot>
-        <Image x:Name="imageControl" x:FieldModifier="private" />
+        <Image x:Name="imageControl" x:FieldModifier="private"
+            Source="{Binding PreviewSource}" />
     </DockPanel>
 
 </phone:PhoneApplicationPage>
