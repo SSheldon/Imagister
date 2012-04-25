@@ -69,6 +69,8 @@ namespace Imagister
 		// This code will not execute when the application is reactivated
 		private void Application_Launching(object sender, LaunchingEventArgs e)
 		{
+			//clear files left from previous sessions
+			PreviewBitmap.ClearImagisterStore();
 			Bmp = new PreviewBitmap();
 		}
 
@@ -92,6 +94,7 @@ namespace Imagister
 		// This code will not execute when the application is deactivated
 		private void Application_Closing(object sender, ClosingEventArgs e)
 		{
+			Bmp.Unload();
 		}
 
 		// Code to execute if a navigation fails

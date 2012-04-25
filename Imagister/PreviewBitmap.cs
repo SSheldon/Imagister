@@ -132,6 +132,8 @@ namespace Imagister
 		/// <param name="stream">The JPEG stream to load.</param>
 		public void Load(Stream stream)
 		{
+			//remove old source JPEG if it exists
+			if (path != null) DeleteSource();
 			using (Stream dest = CreateSource())
 			{
 				stream.CopyTo(dest);
@@ -150,6 +152,16 @@ namespace Imagister
 				bmp = PictureDecoder.DecodeJpeg(source);
 			}
 			image = new ManipulableBitmap(bmp);
+			NotifyImageChanged();
+		}
+
+		/// <summary>
+		/// Unloads this PreviewBitmap and deletes its JPEG source.
+		/// </summary>
+		public void Unload()
+		{
+			DeleteSource();
+			image = null;
 			NotifyImageChanged();
 		}
 
