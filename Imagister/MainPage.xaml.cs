@@ -123,6 +123,8 @@ namespace Imagister
 
 		private void SaveClick(object sender, EventArgs e)
 		{
+			Uri uri = new Uri("/SavePage.xaml", UriKind.Relative);
+			NavigationService.Navigate(uri);
 		}
 		#endregion
 	}
