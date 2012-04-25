@@ -18,6 +18,12 @@ namespace Imagister
 	public partial class App : Application
 	{
 		/// <summary>
+		/// Gets the PreviewBitmap for the image
+		/// being manipulated by this Imagister App.
+		/// </summary>
+		public PreviewBitmap Bmp { get; private set; }
+
+		/// <summary>
 		/// Provides easy access to the root frame of the Phone Application.
 		/// </summary>
 		/// <returns>The root frame of the Phone Application.</returns>
@@ -63,12 +69,17 @@ namespace Imagister
 		// This code will not execute when the application is reactivated
 		private void Application_Launching(object sender, LaunchingEventArgs e)
 		{
+			Bmp = new PreviewBitmap();
 		}
 
 		// Code to execute when the application is activated (brought to foreground)
 		// This code will not execute when the application is first launched
 		private void Application_Activated(object sender, ActivatedEventArgs e)
 		{
+			if (!e.IsApplicationInstancePreserved)
+			{
+				Bmp = new PreviewBitmap();
+			}
 		}
 
 		// Code to execute when the application is deactivated (sent to background)

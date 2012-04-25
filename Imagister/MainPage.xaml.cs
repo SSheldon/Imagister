@@ -26,7 +26,7 @@ namespace Imagister
 		{
 			InitializeComponent();
 
-			bmp = new PreviewBitmap();
+			bmp = (App.Current as App).Bmp;
 			DataContext = bmp;
 
 			chooser = new PhotoChooserTask();
