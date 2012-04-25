@@ -39,6 +39,29 @@
                     Style="{StaticResource PhoneTextSmallStyle}" />
                 <TextBox Margin="0,-6,0,0" />
             </StackPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Width="228">
+                        <TextBlock Text="Width"
+                            Style="{StaticResource PhoneTextSmallStyle}" />
+                        <TextBox Margin="0,-6,0,0" />
+                    </StackPanel>
+                    <StackPanel Width="228">
+                        <TextBlock Text="Height"
+                            Style="{StaticResource PhoneTextSmallStyle}" />
+                        <TextBox Margin="0,-6,0,0" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Scale"
+                        Style="{StaticResource PhoneTextSmallStyle}" />
+                    <Slider Minimum="0" Maximum="1" LargeChange="0.2" Value="1" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Original Size" Width="228" />
+                    <Button Content="MMS Size" Width="228" />
+                </StackPanel>
+            </StackPanel>
         </ListBox>
     </DockPanel>
 
