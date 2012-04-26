@@ -39,6 +39,8 @@ namespace Imagister
 
 		private void SaveClick(object sender, EventArgs e)
 		{
+			bmp.Save(dim);
+			NavigationService.GoBack();
 		}
 
 		private void CancelClick(object sender, EventArgs e)
