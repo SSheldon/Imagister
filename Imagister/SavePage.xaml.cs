@@ -39,6 +39,8 @@ namespace Imagister
 
 		private void SaveClick(object sender, EventArgs e)
 		{
+			if (dim.Width <= 0 || dim.Height <= 0)
+				return;
 			bmp.Save(dim);
 			NavigationService.GoBack();
 		}
