@@ -44,18 +44,21 @@
                     <StackPanel Width="228">
                         <TextBlock Text="Width"
                             Style="{StaticResource PhoneTextSmallStyle}" />
-                        <TextBox Margin="0,-6,0,0" />
+                        <TextBox Margin="0,-6,0,0"
+                            Text="{Binding Path=Width, Mode=TwoWay}" />
                     </StackPanel>
                     <StackPanel Width="228">
                         <TextBlock Text="Height"
                             Style="{StaticResource PhoneTextSmallStyle}" />
-                        <TextBox Margin="0,-6,0,0" />
+                        <TextBox Margin="0,-6,0,0"
+                            Text="{Binding Path=Height, Mode=TwoWay}" />
                     </StackPanel>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Scale"
                         Style="{StaticResource PhoneTextSmallStyle}" />
-                    <Slider Minimum="0" Maximum="1" LargeChange="0.2" Value="1" />
+                    <Slider Minimum="0" Maximum="1" LargeChange="0.2"
+                        Value="{Binding Path=Scale, Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button Content="Original Size" Width="228" />
