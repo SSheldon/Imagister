@@ -14,7 +14,7 @@ namespace Imagister
 		/// <summary>
 		/// Gets an ImageSource for this ManipulableBitmap.
 		/// </summary>
-		public ImageSource SourceImage
+		public WriteableBitmap SourceImage
 		{
 			get { return bmp; }
 		}
