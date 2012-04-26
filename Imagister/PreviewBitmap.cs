@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Phone;
+using Microsoft.Xna.Framework.Media;
 
 namespace Imagister
 {
@@ -141,6 +142,29 @@ namespace Imagister
 		{
 			manipulate(image);
 			NotifyImageChanged();
+		}
+
+		/// <summary>
+		/// Saves this PreviewBitmap's image.
+		/// </summary>
+		/// <param name="filename">The file name to save as.</param>
+		/// <param name="dim">The Dimensions to save as.</param>
+		/// <param name="quality">The quality of the saved JPEG.</param>
+		public void Save(Dimensions dim,
+			string filename = "imagister.jpg",
+			int quality = 100)
+		{
+			using (Stream result = store.CreateFile("result.jpg"))
+			{
+				image.SourceImage.SaveJpeg(result,
+					dim.Width, dim.Height, 0, quality);
+			}
+			using (Stream result = store.OpenFile("result.jpg"))
+			{
+				MediaLibrary lib = new MediaLibrary();
+				lib.SavePicture(filename, result);
+			}
+			store.DeleteFile("result.jpg");
 		}
 	}
 }
