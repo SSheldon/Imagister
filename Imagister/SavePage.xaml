@@ -61,8 +61,10 @@
                         Value="{Binding Path=Scale, Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button Content="Original Size" Width="228" />
-                    <Button Content="MMS Size" Width="228" />
+                    <Button Content="Original Size" Width="228"
+                        Click="OrigSizeClick" />
+                    <Button Content="MMS Size" Width="228"
+                        Click="MmsSizeClick" />
                 </StackPanel>
             </StackPanel>
         </ListBox>

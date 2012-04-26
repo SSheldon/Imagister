@@ -16,13 +16,25 @@ namespace Imagister
 	public partial class SavePage : PhoneApplicationPage
 	{
 		private PreviewBitmap bmp;
+		private Dimensions dim;
 
 		public SavePage()
 		{
 			InitializeComponent();
 
 			bmp = (App.Current as App).Bmp;
-			this.DataContext = bmp.Dimensions;
+			dim = bmp.Dimensions;
+			this.DataContext = dim;
+		}
+
+		private void OrigSizeClick(object sender, RoutedEventArgs e)
+		{
+			dim.Scale = 1.0;
+		}
+
+		private void MmsSizeClick(object sender, RoutedEventArgs e)
+		{
+			dim.Max = 480;
 		}
 
 		private void SaveClick(object sender, EventArgs e)
