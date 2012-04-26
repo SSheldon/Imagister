@@ -35,11 +35,6 @@
                 </Style>
             </ListBox.ItemContainerStyle>
             <StackPanel>
-                <TextBlock Text="File Name"
-                    Style="{StaticResource PhoneTextSmallStyle}" />
-                <TextBox Margin="0,-6,0,0" />
-            </StackPanel>
-            <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Width="228">
                         <TextBlock Text="Width"
@@ -67,6 +62,19 @@
                         Click="MmsSizeClick" />
                 </StackPanel>
             </StackPanel>
+            <!--
+            <StackPanel>
+                <TextBlock Text="File Name"
+                    Style="{StaticResource PhoneTextSmallStyle}" />
+                <TextBox x:Name="nameBox" x:FieldModifier="private"
+                    Margin="0,-6,0,0" Text="imagister.jpg" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Quality"
+                    Style="{StaticResource PhoneTextSmallStyle}" />
+                <Slider Minimum="0" Maximum="100" LargeChange="10" Value="100" />
+            </StackPanel>
+            -->
         </ListBox>
     </DockPanel>
 
