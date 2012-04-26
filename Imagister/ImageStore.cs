@@ -31,6 +31,14 @@ namespace Imagister
 		private string id;
 
 		/// <summary>
+		/// Gets the identifier of this ImageStore.
+		/// </summary>
+		public string Id
+		{
+			get { return id; }
+		}
+
+		/// <summary>
 		/// Constructs an ImageStore.
 		/// </summary>
 		/// <param name="id">The id for the ImageStore.</param>

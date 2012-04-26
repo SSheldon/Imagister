@@ -53,6 +53,15 @@ namespace Imagister
 		}
 
 		/// <summary>
+		/// Gets the identifier of the ImageStore
+		/// for this PreviewBitmap's iamge.
+		/// </summary>
+		public string StoreId
+		{
+			get { return store.Id; }
+		}
+
+		/// <summary>
 		/// Gets this PreviewBitmap's JPEG source Stream.
 		/// </summary>
 		private Stream StreamSource
@@ -93,6 +102,18 @@ namespace Imagister
 				PropertyChanged(this,
 					new PropertyChangedEventArgs("PreviewSource"));
 			}
+		}
+
+		/// <summary>
+		/// Loads this PreviewBitmap from an ImageStore.
+		/// </summary>
+		/// <param name="id">The identifier of the ImageStore.</param>
+		public void Load(string id)
+		{
+			//remove old source JPEG if it exists
+			if (store != null) DeleteSource();
+			store = new ImageStore(id);
+			Load();
 		}
 
 		/// <summary>
