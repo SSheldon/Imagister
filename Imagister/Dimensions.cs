@@ -24,8 +24,7 @@ namespace Imagister
 			get { return (int)(scale * origWidth); }
 			set
 			{
-				scale = value / (double)origWidth;
-				NotifyChanged();
+				Scale = value / (double)origWidth;
 			}
 		}
 
@@ -37,8 +36,21 @@ namespace Imagister
 			get { return (int)(scale * origHeight); }
 			set
 			{
-				scale = value / (double)origHeight;
-				NotifyChanged();
+				Scale = value / (double)origHeight;
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the maximum dimension of the image.
+		/// </summary>
+		public int Max
+		{
+			get { return Math.Max(Width, Height); }
+			set
+			{
+				Scale = Math.Min(1.0, Math.Min(
+					value / (double)origWidth,
+					value / (double)origHeight));
 			}
 		}
 
