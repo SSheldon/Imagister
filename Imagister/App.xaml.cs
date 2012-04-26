@@ -81,6 +81,12 @@ namespace Imagister
 			if (!e.IsApplicationInstancePreserved)
 			{
 				Bmp = new PreviewBitmap();
+				var state = PhoneApplicationService.Current.State;
+				if (state.ContainsKey("image-id"))
+				{
+					string id = (string)state["image-id"];
+					Bmp.Load(id);
+				}
 			}
 		}
 
@@ -88,6 +94,11 @@ namespace Imagister
 		// This code will not execute when the application is closing
 		private void Application_Deactivated(object sender, DeactivatedEventArgs e)
 		{
+			if (Bmp != null && Bmp.IsLoaded)
+			{
+				var state = PhoneApplicationService.Current.State;
+				state["image-id"] = Bmp.StoreId;
+			}
 		}
 
 		// Code to execute when the application is closing (eg, user hit Back)
