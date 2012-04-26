@@ -40,24 +40,39 @@ namespace Imagister
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
-			base.OnNavigatedTo(e);
 			if (!bmp.IsLoaded)
 			{
-				Stream stream;
+				var state = this.State;
 				var query = this.NavigationContext.QueryString;
-				if (query.ContainsKey("token"))
+				if (state.ContainsKey("image-id"))
+				{
+					string id = (string)state["image-id"];
+					bmp.Load(id);
+				}
+				else if (query.ContainsKey("token"))
 				{
 					MediaLibrary lib = new MediaLibrary();
 					Picture pic = lib.GetPictureFromToken(query["token"]);
-					stream = pic.GetImage();
+					Stream stream = pic.GetImage();
+					bmp.Load(stream);
 				}
 				else
 				{
 					Uri uri = new Uri("Images/lenna.jpg", UriKind.Relative);
-					stream = Application.GetResourceStream(uri).Stream;
+					Stream stream = Application.GetResourceStream(uri).Stream;
+					bmp.Load(stream);
 				}
-				bmp.Load(stream);
 			}
+			base.OnNavigatedTo(e);
+		}
+
+		protected override void OnNavigatedFrom(NavigationEventArgs e)
+		{
+			if (e.NavigationMode == NavigationMode.New)
+			{
+				State["image-id"] = bmp.StoreId;
+			}
+			base.OnNavigatedFrom(e);
 		}
 
 		#region Transform Handlers
