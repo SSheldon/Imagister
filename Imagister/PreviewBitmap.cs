@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using System.IO.IsolatedStorage;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Phone;
@@ -13,7 +12,7 @@ namespace Imagister
 	/// </summary>
 	public class PreviewBitmap : INotifyPropertyChanged
 	{
-		private string path;
+		private ImageStore store;
 		private ManipulableBitmap image;
 
 		/// <summary>
@@ -26,7 +25,7 @@ namespace Imagister
 		/// </summary>
 		public bool IsLoaded
 		{
-			get { return path != null && image != null; }
+			get { return store != null && image != null; }
 		}
 
 		/// <summary>
@@ -52,26 +51,6 @@ namespace Imagister
 			}
 		}
 
-		#region Isolated Storage IO
-		/// <summary>
-		/// Gets the user-scoped isolated storage for Imagister.
-		/// </summary>
-		public static IsolatedStorageFile ImagisterStore
-		{
-			get { return IsolatedStorageFile.GetUserStoreForApplication(); }
-		}
-
-		/// <summary>
-		/// Clears the isolated storage for Imagister.
-		/// </summary>
-		public static void ClearImagisterStore()
-		{
-			using (IsolatedStorageFile dir = ImagisterStore)
-			{
-				dir.Remove();
-			}
-		}
-
 		/// <summary>
 		/// Gets this PreviewBitmap's JPEG source Stream.
 		/// </summary>
@@ -79,37 +58,18 @@ namespace Imagister
 		{
 			get
 			{
-				using (IsolatedStorageFile dir = ImagisterStore)
-				{
-					return dir.OpenFile(path, FileMode.Open, FileAccess.Read);
-				}
+				return store.OpenFile("source.jpg");
 			}
 		}
 
 		/// <summary>
 		/// Creates this PreviewBitmap's source JPEG.
 		/// </summary>
-		/// <param name="path">The path of the JPEG.</param>
 		/// <returns>The created JPEG's stream.</returns>
-		private IsolatedStorageFileStream CreateSource(string path)
+		private Stream CreateSource()
 		{
-			this.path = path;
-			IsolatedStorageFileStream stream;
-			using (IsolatedStorageFile dir = ImagisterStore)
-			{
-				stream = dir.CreateFile(path);
-			}
-			return stream;
-		}
-
-		/// <summary>
-		/// Creates this PreviewBitmap's source JPEG.
-		/// </summary>
-		/// <returns>The created JPEG's stream.</returns>
-		private IsolatedStorageFileStream CreateSource()
-		{
-			string path = Guid.NewGuid().ToString() + ".jpg";
-			return CreateSource(path);
+			store = new ImageStore();
+			return store.CreateFile("source.jpg");
 		}
 
 		/// <summary>
@@ -117,13 +77,9 @@ namespace Imagister
 		/// </summary>
 		private void DeleteSource()
 		{
-			using (IsolatedStorageFile dir = ImagisterStore)
-			{
-				dir.DeleteFile(path);
-			}
-			path = null;
+			store.Delete();
+			store = null;
 		}
-		#endregion
 
 		/// <summary>
 		/// Raises the PropertyChanged event to notify listeners that
@@ -145,7 +101,7 @@ namespace Imagister
 		public void Load(Stream stream)
 		{
 			//remove old source JPEG if it exists
-			if (path != null) DeleteSource();
+			if (store != null) DeleteSource();
 			using (Stream dest = CreateSource())
 			{
 				stream.CopyTo(dest);

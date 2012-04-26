@@ -70,7 +70,7 @@ namespace Imagister
 		private void Application_Launching(object sender, LaunchingEventArgs e)
 		{
 			//clear files left from previous sessions
-			PreviewBitmap.ClearImagisterStore();
+			ImageStore.ClearImagisterStore();
 			Bmp = new PreviewBitmap();
 		}
 
