@@ -31,7 +31,11 @@ namespace Imagister
 
 			chooser = new PhotoChooserTask();
 			chooser.ShowCamera = true;
-			chooser.Completed += (sender, e) => bmp.Load(e.ChosenPhoto);
+			chooser.Completed +=
+				(sender, e) => {
+					if (e.TaskResult == TaskResult.OK)
+						bmp.Load(e.ChosenPhoto);
+				};
 		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
