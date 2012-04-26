@@ -40,6 +40,18 @@ namespace Imagister
 			}
 		}
 
+		/// <summary>
+		/// Gets the Dimensions of this PreviewBitmap's image.
+		/// </summary>
+		public Dimensions Dimensions
+		{
+			get
+			{
+				return (image != null ?
+					new Dimensions(image.Width, image.Height) : null);
+			}
+		}
+
 		#region Isolated Storage IO
 		/// <summary>
 		/// Gets the user-scoped isolated storage for Imagister.
