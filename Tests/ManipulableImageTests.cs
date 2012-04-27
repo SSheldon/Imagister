@@ -18,7 +18,7 @@ namespace Imagister.Tests
 		/// </summary>
 		/// <param name="filename">The filename of the image.</param>
 		/// <returns>The stream for the image.</returns>
-		private static Stream LoadImageStream(string filename)
+		public static Stream LoadImageStream(string filename)
 		{
 			string name = "Imagister.Tests.Images." + filename;
 			Assembly asm = Assembly.GetExecutingAssembly();
@@ -30,7 +30,7 @@ namespace Imagister.Tests
 		/// </summary>
 		/// <param name="filename">The filename of the image.</param>
 		/// <returns>The created ManipulableImage</returns>
-		private static ManipulableImage LoadManipulableImage(string filename)
+		public static ManipulableImage LoadManipulableImage(string filename)
 		{
 			Bitmap bmp = new Bitmap(LoadImageStream(filename));
 			return BitmapInterop.Load(bmp);
@@ -39,7 +39,7 @@ namespace Imagister.Tests
 		/// <summary>
 		/// Indicates whether two ManipulableImages have the same data.
 		/// </summary>
-		private static bool SameData(ManipulableImage a, ManipulableImage b)
+		public static bool SameData(ManipulableImage a, ManipulableImage b)
 		{
 			return (a == null) == (b == null) &&
 				a.Width == b.Width &&
