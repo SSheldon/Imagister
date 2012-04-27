@@ -16,12 +16,18 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Imagister
 {
+	/// <summary>
+	/// MainPage is the main page of the Imagister app,
+	/// where images are displayed and manipulated.
+	/// </summary>
 	public partial class MainPage : PhoneApplicationPage
 	{
 		private PreviewBitmap bmp;
 		private PhotoChooserTask chooser;
 
-		// Constructor
+		/// <summary>
+		/// Constructs a MainPage.
+		/// </summary>
 		public MainPage()
 		{
 			InitializeComponent();
@@ -34,6 +40,9 @@ namespace Imagister
 			chooser.Completed += PhotoChosen;
 		}
 
+		/// <summary>
+		/// Called when a photo is chosen from the PhotoChooser task.
+		/// </summary>
 		private void PhotoChosen(object sender, PhotoResult e)
 		{
 			if (e.TaskResult == TaskResult.OK)
@@ -42,6 +51,9 @@ namespace Imagister
 			}
 		}
 
+		/// <summary>
+		/// Called when this MainPage becomes the active page in a frame.
+		/// </summary>
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			if (!bmp.IsLoaded)

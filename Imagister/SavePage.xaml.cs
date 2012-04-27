@@ -13,11 +13,17 @@ using Microsoft.Phone.Controls;
 
 namespace Imagister
 {
+	/// <summary>
+	/// SavePage is the page used to save images.
+	/// </summary>
 	public partial class SavePage : PhoneApplicationPage
 	{
 		private PreviewBitmap bmp;
 		private Dimensions dim;
 
+		/// <summary>
+		/// Constructs a SavePage.
+		/// </summary>
 		public SavePage()
 		{
 			InitializeComponent();
@@ -27,6 +33,7 @@ namespace Imagister
 			this.DataContext = dim;
 		}
 
+		#region Size Handlers
 		private void OrigSizeClick(object sender, RoutedEventArgs e)
 		{
 			dim.Scale = 1.0;
@@ -36,7 +43,9 @@ namespace Imagister
 		{
 			dim.Max = 480;
 		}
+		#endregion
 
+		#region AppBar Handlers
 		private void SaveClick(object sender, EventArgs e)
 		{
 			if (dim.Width <= 0 || dim.Height <= 0)
@@ -49,5 +58,6 @@ namespace Imagister
 		{
 			NavigationService.GoBack();
 		}
+		#endregion
 	}
 }
