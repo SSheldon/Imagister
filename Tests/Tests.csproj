@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BitmapInterop.cs" />
     <Compile Include="ManipulableImageTests.cs" />
+    <Compile Include="PixelImageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +66,21 @@
       <Project>{D86DDB31-9C4C-4309-B568-835698F485BD}</Project>
       <Name>Editing</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\4.bmp" />
+    <EmbeddedResource Include="Images\4_brighten-64.bmp" />
+    <EmbeddedResource Include="Images\4_darken-64.bmp" />
+    <EmbeddedResource Include="Images\4_flip-h.bmp" />
+    <EmbeddedResource Include="Images\4_flip-v.bmp" />
+    <EmbeddedResource Include="Images\4_gamma-0.5.bmp" />
+    <EmbeddedResource Include="Images\4_gamma-2.bmp" />
+    <EmbeddedResource Include="Images\4_grayscale.bmp" />
+    <EmbeddedResource Include="Images\4_invert.bmp" />
+    <EmbeddedResource Include="Images\4_rot-d.bmp" />
+    <EmbeddedResource Include="Images\4_rot-l.bmp" />
+    <EmbeddedResource Include="Images\4_rot-r.bmp" />
+    <EmbeddedResource Include="Images\4_sepia.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
